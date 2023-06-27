@@ -6,7 +6,7 @@ import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue
 
 /**
  * AppConfig implements that a CustomFormMechanism is implemented.
- *
+ * 
  */
 @CustomFormAuthenticationMechanismDefinition(loginToContinue = @LoginToContinue(loginPage = "/index.xhtml", useForwardToLogin = false))
 @ApplicationScoped
