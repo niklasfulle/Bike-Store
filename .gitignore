@@ -1,0 +1,15 @@
+### Target ###
+target/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode
+
+### Vim/Eclipse
+.settings
+.classpath
+.project
+.factorypath

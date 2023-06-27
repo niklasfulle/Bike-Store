@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_1.xsd">
+
+  <datasource jndi-name="java:jboss/datasources/bike_store" pool-name="bikes">
+    <connection-url>jdbc:postgresql://192.168.178.14:5432/bike_store</connection-url>
+    <driver>postgresql-42.6.0.jar</driver>
+    <security>
+      <password>postgres</password>
+      <user-name>postgres</user-name>
+    </security>
+  </datasource>
+
+</datasources>
