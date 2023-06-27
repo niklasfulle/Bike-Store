@@ -38,6 +38,3 @@ target/
 .classpath
 .project
 .factorypath
-
-src\main\webapp\WEB-INF\bike-store-ds.xml
-src/main/webapp/WEB-INF/bike-store-ds.xml
