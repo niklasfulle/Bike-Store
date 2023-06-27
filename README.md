@@ -10,7 +10,6 @@ This was a project for university of my software engineering course.
 
 -   [Overview](#overview)
 -   [External dependencies](#external-dependencies)
--   [Branches](#branches)
 -   [Build](#build)
 -   [Login](#login)
 -   [Features](#features)
@@ -25,15 +24,9 @@ This was a project for university of my software engineering course.
 | PostgreSQL   | 15.3    | https://www.postgresql.org/                                         |
 | JBDC Treiber | 42.6.0  | https://mvnrepository.com/artifact/org.postgresql/postgresql/42.6.0 |
 
-## Branches
-
-| Branch | Usage                      |
-| ------ | -------------------------- |
-| master | current development branch |
-
 ## Build
 
-First import the file `bike-store.sql` into your PostgreSQL database. The File is located in `src/main/resources/`.<br>
+First import the file `bike-store.sql` into your PostgreSQL database. The File is located in `docs`.<br>
 
 You have to create a wildfly user with the add-user.bat or add-user.sh script in the bin folder of your wildfly installation.<br>
 
