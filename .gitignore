@@ -1,5 +1,7 @@
 ### Target ###
 target/
+.gitignore
+src/main/webapp/WEB-INF/bike-store-ds.xml
 
 ### IntelliJ IDEA ###
 .idea/
