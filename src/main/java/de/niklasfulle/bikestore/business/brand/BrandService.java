@@ -146,6 +146,7 @@ public class BrandService {
    */
   public long getReferenceCount(Integer brandId) {
     Brand brand = getBrand(brandId);
+    // Count the products where the brand is used as foreign key.
     return em.createQuery("SELECT COUNT(p) FROM Product p WHERE p.brand = :brand", Long.class)
         .setParameter("brand", brand)
         .setHint("org.hibernate.readOnly", true)

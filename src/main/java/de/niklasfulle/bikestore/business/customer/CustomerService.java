@@ -180,6 +180,7 @@ public class CustomerService {
    */
   public long getReferenceCount(Integer customerId) {
     Customer customer = getCustomer(customerId);
+    // Count the orders where the customer is used as foreign key
     return em.createQuery("SELECT COUNT(o) FROM Order o WHERE o.customer = :customer", Long.class)
         .setParameter("customer", customer)
         .setHint("org.hibernate.readOnly", true)
