@@ -5,7 +5,7 @@
   https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
   version="6.0">
 
-<display-name>SEP-10</display-name>
+<display-name>Bike Store</display-name>
 
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
