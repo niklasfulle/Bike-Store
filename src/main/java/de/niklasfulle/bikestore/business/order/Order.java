@@ -44,14 +44,17 @@ public class Order {
   @Column(name = "shipped_date")
   private Date shippedDate;
 
+  // Many To One-Association with table customers (or the Customer entity)
   @ManyToOne
   @JoinColumn(name = "customer_id")
   private Customer customer;
 
+  // Many To One-Association with table staffs (or the Staff entity)
   @ManyToOne
   @JoinColumn(name = "staff_id")
   private Staff staff;
 
+  // Many To One-Association with table stores (or the Store entity)
   @ManyToOne
   @JoinColumn(name = "store_id")
   private Store store;

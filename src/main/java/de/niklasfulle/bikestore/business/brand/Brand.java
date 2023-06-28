@@ -20,7 +20,6 @@ import de.niklasfulle.bikestore.business.product.Product;
 @Entity
 @Table(name = "brands")
 public class Brand{
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "brand_id")
