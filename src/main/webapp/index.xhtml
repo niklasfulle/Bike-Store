@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Bike Store</title>
-    </head>
-    <body></body>
+<html
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns="http://www.w3.org/1999/xhtml"
+    lang="xhtml"
+>
+    <h:body>
+        <ui:composition template="templates/commonLayout.xhtml">
+            <ui:define name="header">
+                <h1>Home</h1>
+            </ui:define>
+            <ui:define name="topdownButtons"></ui:define>
+        </ui:composition>
+    </h:body>
 </html>

@@ -1,0 +1,75 @@
+:root {
+    --background: #282829;
+    --background-variant: #1e1e1f;
+    --highlight: #219ffd;
+    --highlight-hover: #fff;
+    --font: #fff;
+    --transition: all 400ms ease;
+    --shadow: 0 6px 10px 0px rgb(0 0 0 / 14%), 0 1px 18px 0px rgb(0 0 0 / 12%),
+        0 3px 5px 0 rgb(0 0 0 / 20%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    padding-top: 0.5em;
+    width: 70%;
+    margin: 0 auto;
+}
+
+@media all and (max-width: 1300px) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .container {
+        width: 90%;
+    }
+}
+
+.btn {
+    font-weight: 600;
+    background-color: var(--highlight);
+    border: 1px solid var(--highlight);
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+    cursor: pointer;
+}

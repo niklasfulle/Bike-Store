@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns="http://www.w3.org/1999/xhtml"
+    lang="xhtml"
+>
+    <body>
+        <ui:composition>
+            <!--@elvariable id="request" type="String"-->
+            <!--@elvariable id="login" type="String"-->
+            <ui:param name="login" value="#{loginController.getLoginStatus()}" />
+            <div class="auth">
+                <span>#{loginController.getStaffName()}</span>
+                <c:choose>
+                    <c:when test="${login == 'false'}">
+                        <c:choose>
+                            <c:when test="${request.getServletPath() == '/index.xhtml'}">
+                                <button
+                                    class="btn"
+                                    onclick="window.location.href = 'sites/auth/Login.xhtml'"
+                                >
+                                    Anmelden
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <button
+                                    class="btn"
+                                    onclick="window.location.href = '../auth/Login.xhtml'"
+                                >
+                                    Anmelden
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+                    <c:otherwise>
+                        <h:form>
+                            <h:commandButton
+                                action="#{loginController.logout()}"
+                                value="Abmelden"
+                                id="logoutButton"
+                                class="btn"
+                            />
+                        </h:form>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns="http://www.w3.org/1999/xhtml"
+    lang="xhtml"
+>
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bike Store</title>
+        <!--@elvariable id="request" type="String"-->
+        <c:if test="${request.getServletPath() == '/index.xhtml'}">
+            <link
+                rel="stylesheet"
+                type="text/css"
+                href="resources/style/style.css"
+                media="screen"
+            />
+            <script type="text/javascript" src="resources/javascript/functions.js"></script>
+        </c:if>
+        <c:if test="${request.getServletPath() != '/index.xhtml'}">
+            <link
+                rel="stylesheet"
+                type="text/css"
+                href="../../resources/style/style.css"
+                media="screen"
+            />
+            <script type="text/javascript" src="../../resources/javascript/functions.js"></script>
+        </c:if>
+    </h:head>
+    <h:body onload="setSelectFields()">
+        <div class="container">
+            <ui:insert name="auth">
+                <ui:include src="commonAuth.xhtml" />
+            </ui:insert>
+            <div class="header">
+                <ui:insert name="header">
+                    <ui:include src="commonHeader.xhtml" />
+                </ui:insert>
+            </div>
+            <div class="content">
+                <ui:insert name="nav">
+                    <ui:include src="../components/nav.xhtml" />
+                </ui:insert>
+                <div class="main">
+                    <ui:insert name="content">
+                        <ui:include src="commonContent.xhtml" />
+                    </ui:insert>
+                </div>
+            </div>
+            <ui:insert name="topdownButtons">
+                <ui:include src="../components/topdownButtons.xhtml" />
+            </ui:insert>
+        </div>
+    </h:body>
+</html>
