@@ -1,25 +1,24 @@
 package de.niklasfulle.bikestore.business.customer;
 
-import java.util.List;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import de.niklasfulle.bikestore.business.order.Order;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-
-import de.niklasfulle.bikestore.business.order.Order;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.List;
 
 /**
- * The Entity Customer represents the customers table in the database.
- * Customer is responsible for the processing of the data of the Customer
- * objects in the database.
+ * The Entity Customer represents the customers table in the database. Customer is responsible for
+ * the processing of the data of the Customer objects in the database.
  */
 @Entity
 @Table(name = "customers")
 public class Customer {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "customer_id")

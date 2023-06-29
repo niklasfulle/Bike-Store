@@ -1,17 +1,18 @@
 package de.niklasfulle.bikestore.business.brand;
 
-import java.util.List;
-import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The BrandService class is responsible for the processing of the data of the
- * Brand Entity. It is used to communicate with the database.
+ * The BrandService class is responsible for the processing of the data of the Brand Entity. It is
+ * used to communicate with the database.
  */
 @Stateless
 public class BrandService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -26,8 +27,8 @@ public class BrandService {
   }
 
   /**
-   * Removes Brand from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes Brand from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param brandId id of Brand
    */
@@ -45,8 +46,8 @@ public class BrandService {
   }
 
   /**
-   * Gets the Brand from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Gets the Brand from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param brandId id of Brand
    */
@@ -66,9 +67,8 @@ public class BrandService {
   }
 
   /**
-   * Receives all brands from the database, page and offset needed to calculate
-   * the final offset. If the Limit is 0 then it will be set 24. If the offset is
-   * smaller than 0 it will be set to 0.
+   * Receives all brands from the database, page and offset needed to calculate the final offset. If
+   * the Limit is 0 then it will be set 24. If the offset is smaller than 0 it will be set to 0.
    *
    * @param page   the page where the user is located
    * @param limit  the limit of records per page
@@ -89,8 +89,8 @@ public class BrandService {
     String orderBy = mapBrandOrderBy(order);
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT b from Brand b WHERE b.brandName LIKE :searchTerm ORDER BY " + orderBy,
-          Brand.class)
+              "SELECT b from Brand b WHERE b.brandName LIKE :searchTerm ORDER BY " + orderBy,
+              Brand.class)
           .setParameter("searchTerm", search + "%")
           .setFirstResult(offset)
           .setMaxResults(limit)
@@ -127,7 +127,7 @@ public class BrandService {
   public long getBrandsCount(String search) {
     if (!Objects.equals(search, "")) {
       return em.createQuery("SELECT COUNT(b) FROM Brand b WHERE b.brandName LIKE :searchTerm",
-          Long.class)
+              Long.class)
           .setParameter("searchTerm", search + "%")
           .setHint("org.hibernate.readOnly", true)
           .getSingleResult();

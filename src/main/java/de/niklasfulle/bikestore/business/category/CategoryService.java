@@ -1,17 +1,18 @@
 package de.niklasfulle.bikestore.business.category;
 
-import java.util.List;
-import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The CategoryService class is responsible for the processing of the data of
- * the Category Entity. It is used to communicate with the database.
+ * The CategoryService class is responsible for the processing of the data of the Category Entity.
+ * It is used to communicate with the database.
  */
 @Stateless
 public class CategoryService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -26,8 +27,8 @@ public class CategoryService {
   }
 
   /**
-   * Removes Category from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes Category from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param categoryId id of Category
    */
@@ -45,8 +46,8 @@ public class CategoryService {
   }
 
   /**
-   * Gets the Category from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Gets the Category from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param categoryId id of Category
    */
@@ -66,9 +67,9 @@ public class CategoryService {
   }
 
   /**
-   * Receives all categories from the database, page and offset needed to
-   * calculate the final offset. If the Limit is 0 then it will be set 24. If the
-   * offset is smaller than 0 it will be set to 0.
+   * Receives all categories from the database, page and offset needed to calculate the final
+   * offset. If the Limit is 0 then it will be set 24. If the offset is smaller than 0 it will be
+   * set to 0.
    *
    * @param page   the page where the user is located
    * @param limit  the limit of records per page
@@ -89,8 +90,8 @@ public class CategoryService {
     String orderBy = mapCategoryOrderBy(order);
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT c from Category c WHERE c.categoryName LIKE :searchTerm ORDER BY " + orderBy,
-          Category.class)
+              "SELECT c from Category c WHERE c.categoryName LIKE :searchTerm ORDER BY " + orderBy,
+              Category.class)
           .setParameter("searchTerm", search + "%")
           .setFirstResult(offset)
           .setMaxResults(limit)
@@ -127,7 +128,7 @@ public class CategoryService {
   public long getCategoriesCount(String search) {
     if (!Objects.equals(search, "")) {
       return em.createQuery("SELECT COUNT(c) FROM Category c WHERE c.categoryName LIKE :searchTerm",
-          Long.class)
+              Long.class)
           .setParameter("searchTerm", search + "%")
           .setHint("org.hibernate.readOnly", true)
           .getSingleResult();

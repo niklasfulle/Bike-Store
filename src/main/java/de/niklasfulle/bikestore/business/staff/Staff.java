@@ -1,24 +1,23 @@
 package de.niklasfulle.bikestore.business.staff;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import de.niklasfulle.bikestore.business.store.Store;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-
-import de.niklasfulle.bikestore.business.store.Store;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 /**
- * The Entity Staff represents the staffs table in the database.
- * Staff is responsible for the processing of the data of the Staff
- * objects in the database.
+ * The Entity Staff represents the staffs table in the database. Staff is responsible for the
+ * processing of the data of the Staff objects in the database.
  */
 @Entity
 @Table(name = "staffs")
 public class Staff {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "staff_id")

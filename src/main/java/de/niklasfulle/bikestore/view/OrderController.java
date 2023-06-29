@@ -1,39 +1,26 @@
 package de.niklasfulle.bikestore.view;
 
-import java.util.List;
-import java.util.Date;
-import java.util.ArrayList;
-import java.math.BigDecimal;
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import java.math.RoundingMode;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.application.FacesMessage;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.validator.ValidatorException;
-import jakarta.validation.constraints.NotNull;
-
-import de.niklasfulle.bikestore.business.staff.Staff;
-import de.niklasfulle.bikestore.business.staff.StaffService;
-import de.niklasfulle.bikestore.business.store.Store;
-import de.niklasfulle.bikestore.business.store.StoreService;
-import de.niklasfulle.bikestore.business.order.Order;
-import de.niklasfulle.bikestore.business.order.OrderService;
-import de.niklasfulle.bikestore.business.product.Product;
-import de.niklasfulle.bikestore.business.product.ProductService;
-import de.niklasfulle.bikestore.business.customer.Customer;
 import de.niklasfulle.bikestore.business.customer.CustomerService;
-import de.niklasfulle.bikestore.business.orderItem.OrderItem;
+import de.niklasfulle.bikestore.business.order.OrderService;
 import de.niklasfulle.bikestore.business.orderItem.OrderItemService;
+import de.niklasfulle.bikestore.business.product.ProductService;
+import de.niklasfulle.bikestore.business.staff.StaffService;
+import de.niklasfulle.bikestore.business.store.StoreService;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
- * This class is part of the view layer. The OrderController works with the
- * OrderService to provide the data of the order entity to the view.
+ * This class is part of the view layer. The OrderController works with the OrderService to provide
+ * the data of the order entity to the view.
  */
 @Named
 @RequestScoped
 public class OrderController {
+
   // Services
   @Inject
   OrderService orderService;

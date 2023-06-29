@@ -1,17 +1,18 @@
 package de.niklasfulle.bikestore.business.stocks;
 
-import java.util.List;
-import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The StockService class is responsible for the processing of the data of the
- * Stock Entity. It is used to communicate with the database.
+ * The StockService class is responsible for the processing of the data of the Stock Entity. It is
+ * used to communicate with the database.
  */
 @Stateless
 public class StockService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -26,11 +27,10 @@ public class StockService {
   }
 
   /**
-   * Updates Stock in the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity. The stock is updated by
-   * setting the new values. The EntityManager is flushed to save the changes. If
-   * the stock is not found, it will not be updated.
-   * 
+   * Updates Stock in the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity. The stock is updated by setting the new values. The EntityManager
+   * is flushed to save the changes. If the stock is not found, it will not be updated.
+   *
    * @param stockId id of Stock to be updated
    */
   public void update(String stockId, Integer quantity) {
@@ -50,8 +50,8 @@ public class StockService {
   }
 
   /**
-   * Removes Stock from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes Stock from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param sid StockKeys of Stock to be removed
    */
@@ -69,9 +69,8 @@ public class StockService {
   }
 
   /**
-   * Gets the Stock from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity. The StockKeys need to be
-   * created before calling this function.
+   * Gets the Stock from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity. The StockKeys need to be created before calling this function.
    *
    * @param storeId   id of Stock
    * @param productId id of Stock
@@ -93,9 +92,8 @@ public class StockService {
   }
 
   /**
-   * Receives all stocks from the database page and offset needed to calculate the
-   * final offset. If the Limit is 0 then it will be set 24. If the offset is
-   * smaller than 0 it will be set to 0.
+   * Receives all stocks from the database page and offset needed to calculate the final offset. If
+   * the Limit is 0 then it will be set 24. If the offset is smaller than 0 it will be set to 0.
    *
    * @param page   the page where the user is located
    * @param limit  the limit of records per page
@@ -116,9 +114,9 @@ public class StockService {
     String orderBy = mapSocksOrderBy(order);
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT s FROM Stock s WHERE s.product.productName LIKE :searchTerm OR s.store.storeName LIKE :searchTerm ORDER BY "
-              + orderBy,
-          Stock.class)
+              "SELECT s FROM Stock s WHERE s.product.productName LIKE :searchTerm OR s.store.storeName LIKE :searchTerm ORDER BY "
+                  + orderBy,
+              Stock.class)
           .setParameter("searchTerm", search + "%")
           .setFirstResult(offset)
           .setMaxResults(limit)
@@ -156,8 +154,8 @@ public class StockService {
   public long getStocksCount(String search) {
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT COUNT(s) FROM Stock s WHERE s.product.productName LIKE :searchTerm OR s.store.storeName LIKE :searchTerm",
-          Long.class)
+              "SELECT COUNT(s) FROM Stock s WHERE s.product.productName LIKE :searchTerm OR s.store.storeName LIKE :searchTerm",
+              Long.class)
           .setParameter("searchTerm", search + "%")
           .setHint("org.hibernate.readOnly", true)
           .getSingleResult();

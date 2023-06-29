@@ -1,23 +1,22 @@
 package de.niklasfulle.bikestore.view;
 
-import java.io.IOException;
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.servlet.http.HttpSession;
-import jakarta.faces.context.FacesContext;
+import de.niklasfulle.bikestore.business.staff.StaffService;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
-import jakarta.validation.constraints.NotNull;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
+import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.Password;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.security.enterprise.SecurityContext;
-import jakarta.security.enterprise.credential.Password;
-import jakarta.security.enterprise.AuthenticationStatus;
-import jakarta.security.enterprise.credential.Credential;
-import jakarta.security.enterprise.credential.UsernamePasswordCredential;
-import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
-
-import de.niklasfulle.bikestore.business.staff.StaffService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.constraints.NotNull;
+import java.io.IOException;
 
 /**
  * LoginController handles the login form. It is used to authenticate the user.
@@ -25,6 +24,7 @@ import de.niklasfulle.bikestore.business.staff.StaffService;
 @Named
 @RequestScoped
 public class LoginController {
+
   @Inject
   private SecurityContext securityContext;
 
@@ -47,7 +47,8 @@ public class LoginController {
     Credential credential = new UsernamePasswordCredential(email, new Password(phone));
     ExternalContext externalContext = facesContext.getExternalContext();
 
-    AuthenticationStatus status = securityContext.authenticate((HttpServletRequest) externalContext.getRequest(),
+    AuthenticationStatus status = securityContext.authenticate(
+        (HttpServletRequest) externalContext.getRequest(),
         (HttpServletResponse) externalContext.getResponse(),
         AuthenticationParameters.withParams().credential(credential));
 
@@ -75,7 +76,7 @@ public class LoginController {
 
   /**
    * Logs the user out
-   * 
+   *
    * @return the index page
    */
   public String logout() {
@@ -85,7 +86,7 @@ public class LoginController {
 
   /**
    * Gets the current http session
-   * 
+   *
    * @return the current http session
    */
   private HttpSession getHttpSession() {
@@ -94,7 +95,7 @@ public class LoginController {
 
   /**
    * Checks if the user is logged in
-   * 
+   *
    * @return true if the user is logged in, false otherwise
    */
   public boolean getLoginStatus() {
@@ -103,7 +104,7 @@ public class LoginController {
 
   /**
    * Gets the email of the logged in user
-   * 
+   *
    * @return the email of the logged in user
    */
   public String getStaffEmail() {
@@ -120,7 +121,7 @@ public class LoginController {
 
   /**
    * Gets the role of the logged in user
-   * 
+   *
    * @return the role of the logged in user
    */
   public String getStaffRole() {
@@ -137,7 +138,7 @@ public class LoginController {
 
   /**
    * Gets the name of the logged in user
-   * 
+   *
    * @return the name of the logged in user
    */
   public String getStaffName() {

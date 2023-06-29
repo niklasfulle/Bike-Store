@@ -1,34 +1,34 @@
 package de.niklasfulle.bikestore.security;
 
-import java.util.HashSet;
-import jakarta.inject.Inject;
-import java.util.Collections;
-import jakarta.servlet.http.HttpSession;
-import jakarta.faces.context.FacesContext;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.security.enterprise.credential.Credential;
-import jakarta.security.enterprise.identitystore.IdentityStore;
-import jakarta.security.enterprise.credential.UsernamePasswordCredential;
-import jakarta.security.enterprise.identitystore.CredentialValidationResult;
-
 import de.niklasfulle.bikestore.business.staff.Staff;
 import de.niklasfulle.bikestore.business.staff.StaffService;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.IdentityStore;
+import jakarta.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.HashSet;
 
 /**
- * BikeStoreIdentityStore implements the IdentityStore interface. It is used to
- * validate the credentials of the user.
+ * BikeStoreIdentityStore implements the IdentityStore interface. It is used to validate the
+ * credentials of the user.
  */
 @ApplicationScoped
 public class BikeStoreIdentityStore implements IdentityStore {
+
   @Inject
   private StaffService staffService;
 
   /**
-   * Validates the credentials of the user. It uses the StaffService to fetch the
-   * Staff from the database. If the Staff is not found, the result is invalid.
-   * Otherwise, the password is compared to the password of the Staff. If the
-   * password is correct, the result is valid. Otherwise, the result is invalid.
-   * 
+   * Validates the credentials of the user. It uses the StaffService to fetch the Staff from the
+   * database. If the Staff is not found, the result is invalid. Otherwise, the password is compared
+   * to the password of the Staff. If the password is correct, the result is valid. Otherwise, the
+   * result is invalid.
+   *
    * @param credential the credential to be validated
    * @return the result of the validation
    */
@@ -48,7 +48,8 @@ public class BikeStoreIdentityStore implements IdentityStore {
     // If the password is correct, the result is valid
     if (((UsernamePasswordCredential) credential).compareTo(staff.getEmail(),
         staff.getPhone().split(" ")[1])) {
-      HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+      HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+          .getSession(false);
 
       String role = staff.getRole();
 

@@ -1,25 +1,24 @@
 package de.niklasfulle.bikestore.business.brand;
 
-import java.util.List;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import de.niklasfulle.bikestore.business.product.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-
-import de.niklasfulle.bikestore.business.product.Product;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.List;
 
 /**
- * The Entity Brand represents the brands table in the database.
- * Brand is responsible for the processing of the data of the Brand objects in
- * the database.
+ * The Entity Brand represents the brands table in the database. Brand is responsible for the
+ * processing of the data of the Brand objects in the database.
  */
 @Entity
 @Table(name = "brands")
-public class Brand{
+public class Brand {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "brand_id")

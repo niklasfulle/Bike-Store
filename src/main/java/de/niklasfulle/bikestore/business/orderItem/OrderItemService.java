@@ -1,18 +1,18 @@
 package de.niklasfulle.bikestore.business.orderItem;
 
-import java.util.List;
+import de.niklasfulle.bikestore.business.order.Order;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-
-import de.niklasfulle.bikestore.business.order.Order;
+import java.util.List;
 
 /**
- * The OrderItemService class is responsible for the processing of the data of
- * the OrderItem Entity. It is used to communicate with the database.
+ * The OrderItemService class is responsible for the processing of the data of the OrderItem Entity.
+ * It is used to communicate with the database.
  */
 @Stateless
 public class OrderItemService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -27,8 +27,8 @@ public class OrderItemService {
   }
 
   /**
-   * Removes OrderItem from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes OrderItem from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param orderItemId id of OrderItem
    */
@@ -43,8 +43,8 @@ public class OrderItemService {
   }
 
   /**
-   * Gets the OrderItem from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Gets the OrderItem from the database through the EntityManager. It uses the EntityManagers'
+   * find function to fetch the Entity.
    *
    * @param orderItemId id of OrderItem
    */
@@ -53,8 +53,8 @@ public class OrderItemService {
   }
 
   /**
-   * Returns all OrderItems from the Order with the given id. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Returns all OrderItems from the Order with the given id. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param orderId id of Order
    * @return List of OrderItems

@@ -1,48 +1,39 @@
 package de.niklasfulle.bikestore.view;
 
-import java.util.List;
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.validation.constraints.NotNull;
-import jakarta.enterprise.context.RequestScoped;
-
 import de.niklasfulle.bikestore.business.store.StoreService;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.validation.constraints.NotNull;
 
 /**
- * This class is part of the view layer. The StoreController works with the
- * StoreService to provide the data of the stock store to the view.
+ * This class is part of the view layer. The StoreController works with the StoreService to provide
+ * the data of the stock store to the view.
  */
 @Named
 @RequestScoped
 public class StoreController {
-  // Services
-  @Inject
-  private StoreService storeService;
 
   // Attributes
   @NotNull
   Integer storeId;
-
   @NotNull
   String storeName;
-
   @NotNull
   String city;
-
   @NotNull
   String email;
-
   @NotNull
   String phone;
-
   @NotNull
   String street;
-
   @NotNull
   String zipCode;
-
   @NotNull
   String state;
+  // Services
+  @Inject
+  private StoreService storeService;
 
   // Getter and Setter
   public Integer getStoreId() {

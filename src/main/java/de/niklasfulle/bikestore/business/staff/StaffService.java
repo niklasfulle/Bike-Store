@@ -1,19 +1,19 @@
 package de.niklasfulle.bikestore.business.staff;
 
-import java.util.List;
-import java.util.Objects;
+import de.niklasfulle.bikestore.business.store.Store;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-
-import de.niklasfulle.bikestore.business.store.Store;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The StaffService class is responsible for the processing of the data of the
- * Staff Entity. It is used to communicate with the database.
+ * The StaffService class is responsible for the processing of the data of the Staff Entity. It is
+ * used to communicate with the database.
  */
 @Stateless
 public class StaffService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -28,11 +28,10 @@ public class StaffService {
   }
 
   /**
-   * Updates Staff in the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity. The staff is updated by
-   * setting the new values. The EntityManager is flushed to save the changes. If
-   * the staff is not found, it will not be updated.
-   * 
+   * Updates Staff in the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity. The staff is updated by setting the new values. The EntityManager
+   * is flushed to save the changes. If the staff is not found, it will not be updated.
+   *
    * @param staffId id of Staff to be updated
    */
   public void update(Integer staffId, String firstName, String lastName, String email, String phone,
@@ -57,8 +56,8 @@ public class StaffService {
   }
 
   /**
-   * Removes Staff from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes Staff from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param staffId id of Staff
    */
@@ -75,8 +74,8 @@ public class StaffService {
   }
 
   /**
-   * Gets the Staff from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Gets the Staff from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param staffId id of Staff
    */
@@ -85,8 +84,8 @@ public class StaffService {
   }
 
   /**
-   * Gets the Staff from the database through the EntityManager by the email.
-   * It uses the EntityManagers' createQuery function to fetch the Entity.
+   * Gets the Staff from the database through the EntityManager by the email. It uses the
+   * EntityManagers' createQuery function to fetch the Entity.
    *
    * @param email email of Staff
    */
@@ -105,15 +104,14 @@ public class StaffService {
    */
   public List<Staff> getAllStaffs() {
     return em.createQuery(
-        "SELECT s FROM Staff s ORDER BY s.staffId ASC", Staff.class)
+            "SELECT s FROM Staff s ORDER BY s.staffId ASC", Staff.class)
         .setHint("org.hibernate.readOnly", true)
         .getResultList();
   }
 
   /**
-   * Receives all staffs from the database page and offset needed to calculate the
-   * final offset. If the Limit is 0 then it will be set 24. If the offset is
-   * smaller than 0 it will be set to 0.
+   * Receives all staffs from the database page and offset needed to calculate the final offset. If
+   * the Limit is 0 then it will be set 24. If the offset is smaller than 0 it will be set to 0.
    *
    * @param page   the page where the user is located
    * @param limit  the limit of records per page
@@ -134,9 +132,9 @@ public class StaffService {
     String orderBy = mapStaffOrderBy(order);
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT s FROM Staff s WHERE s.firstName LIKE :searchTerm OR s.lastName LIKE :searchTerm ORDER BY "
-              + orderBy,
-          Staff.class)
+              "SELECT s FROM Staff s WHERE s.firstName LIKE :searchTerm OR s.lastName LIKE :searchTerm ORDER BY "
+                  + orderBy,
+              Staff.class)
           .setParameter("searchTerm", search + "%")
           .setFirstResult(offset)
           .setMaxResults(limit)
@@ -178,8 +176,8 @@ public class StaffService {
   public long getStaffsCount(String search) {
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT COUNT(s) FROM Staff s WHERE s.firstName LIKE :searchTerm OR s.lastName LIKE :searchTerm",
-          Long.class)
+              "SELECT COUNT(s) FROM Staff s WHERE s.firstName LIKE :searchTerm OR s.lastName LIKE :searchTerm",
+              Long.class)
           .setParameter("searchTerm", search + "%")
           .setHint("org.hibernate.readOnly", true)
           .getSingleResult();

@@ -1,82 +1,81 @@
 package de.niklasfulle.bikestore.business.stocks;
 
+import de.niklasfulle.bikestore.business.product.Product;
+import de.niklasfulle.bikestore.business.store.Store;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.JoinColumn;
-
-import de.niklasfulle.bikestore.business.store.Store;
-import de.niklasfulle.bikestore.business.product.Product;
 
 /**
- * The Entity Stock represents the stocks table in the database.
- * Stock is responsible for the processing of the data of the Stock
- * objects in the database.
+ * The Entity Stock represents the stocks table in the database. Stock is responsible for the
+ * processing of the data of the Stock objects in the database.
  */
 @Entity
 @Table(name = "stocks")
 public class Stock implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
 
-    @EmbeddedId
-    private StockKeys id;
+  @Serial
+  private static final long serialVersionUID = 1L;
 
-    private Integer quantity;
+  @EmbeddedId
+  private StockKeys id;
 
-    // Many To One-Association with table products (or the Product entity)
-    @ManyToOne
-    @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private Product product;
+  private Integer quantity;
 
-    // Many To One-Association with table stores (or the Store entity)
-    @ManyToOne
-    @JoinColumn(name = "store_id", insertable = false, updatable = false)
-    private Store store;
+  // Many To One-Association with table products (or the Product entity)
+  @ManyToOne
+  @JoinColumn(name = "product_id", insertable = false, updatable = false)
+  private Product product;
 
-    public Stock() {
-    }
+  // Many To One-Association with table stores (or the Store entity)
+  @ManyToOne
+  @JoinColumn(name = "store_id", insertable = false, updatable = false)
+  private Store store;
 
-    public Stock(StockKeys id, Integer quantity, Product product, Store store) {
-        this.id = id;
-        this.quantity = quantity;
-        this.product = product;
-        this.store = store;
-    }
+  public Stock() {
+  }
 
-    // Setter and Getter
-    public StockKeys getId() {
-        return id;
-    }
+  public Stock(StockKeys id, Integer quantity, Product product, Store store) {
+    this.id = id;
+    this.quantity = quantity;
+    this.product = product;
+    this.store = store;
+  }
 
-    public void setId(StockKeys id) {
-        this.id = id;
-    }
+  // Setter and Getter
+  public StockKeys getId() {
+    return id;
+  }
 
-    public Product getProduct() {
-        return product;
-    }
+  public void setId(StockKeys id) {
+    this.id = id;
+  }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+  public Product getProduct() {
+    return product;
+  }
 
-    public Store getStore() {
-        return store;
-    }
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 
-    public void setStore(Store store) {
-        this.store = store;
-    }
+  public Store getStore() {
+    return store;
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  public void setStore(Store store) {
+    this.store = store;
+  }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
+  }
 }

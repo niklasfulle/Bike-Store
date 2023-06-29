@@ -1,16 +1,17 @@
 package de.niklasfulle.bikestore.business.orderItem;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.Column;
 import java.io.Serial;
 import java.io.Serializable;
-import jakarta.persistence.Column;
-import jakarta.enterprise.context.RequestScoped;
 
 /**
- * OrderItemKeys is responsible for the storing the foreign keys of the table
- * order_items. It includes the item-id and order-id
+ * OrderItemKeys is responsible for the storing the foreign keys of the table order_items. It
+ * includes the item-id and order-id
  */
 @RequestScoped
 public class OrderItemKeys implements Serializable {
+
   @Serial
   private static final long serialVersionUID = 1L;
 

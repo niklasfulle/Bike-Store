@@ -1,17 +1,18 @@
 package de.niklasfulle.bikestore.business.customer;
 
-import java.util.List;
-import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The CustomerService class is responsible for the processing of the data of
- * the Customer Entity. It is used to communicate with the database.
+ * The CustomerService class is responsible for the processing of the data of the Customer Entity.
+ * It is used to communicate with the database.
  */
 @Stateless
 public class CustomerService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -26,11 +27,11 @@ public class CustomerService {
   }
 
   /**
-   * Updates Customer in the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity. The customer is updated by
-   * setting the new values. The EntityManager is flushed to save the changes. If
-   * the customer is not found, it will not be updated.
-   * 
+   * Updates Customer in the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity. The customer is updated by setting the new values. The
+   * EntityManager is flushed to save the changes. If the customer is not found, it will not be
+   * updated.
+   *
    * @param customerId id of Customer to be updated
    */
   public void update(Integer customerId, String firstName, String lastName, String email,
@@ -54,8 +55,8 @@ public class CustomerService {
   }
 
   /**
-   * Removes Customer from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes Customer from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param customerId id of Customer
    */
@@ -72,8 +73,8 @@ public class CustomerService {
   }
 
   /**
-   * Gets the Customer from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Gets the Customer from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param customerId id of Customer
    */
@@ -93,9 +94,8 @@ public class CustomerService {
   }
 
   /**
-   * Receives all customers from the database, page and offset needed to calculate
-   * the final offset. If the Limit is 0 then it will be set 24. If the offset is
-   * smaller than 0 it will be set to 0.
+   * Receives all customers from the database, page and offset needed to calculate the final offset.
+   * If the Limit is 0 then it will be set 24. If the offset is smaller than 0 it will be set to 0.
    *
    * @param page   the page where the user is located
    * @param limit  the limit of records per page
@@ -116,9 +116,9 @@ public class CustomerService {
     String orderBy = mapCustomerOrderBy(order);
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT c FROM Customer c WHERE c.firstName LIKE :searchTerm OR c.lastName LIKE :searchTerm ORDER BY "
-              + orderBy,
-          Customer.class)
+              "SELECT c FROM Customer c WHERE c.firstName LIKE :searchTerm OR c.lastName LIKE :searchTerm ORDER BY "
+                  + orderBy,
+              Customer.class)
           .setParameter("searchTerm", search + "%")
           .setFirstResult(offset)
           .setMaxResults(limit)
@@ -162,8 +162,8 @@ public class CustomerService {
   public long getCustomersCount(String search) {
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT COUNT(c) FROM Customer c WHERE c.firstName LIKE :searchTerm OR c.lastName LIKE :searchTerm",
-          Long.class)
+              "SELECT COUNT(c) FROM Customer c WHERE c.firstName LIKE :searchTerm OR c.lastName LIKE :searchTerm",
+              Long.class)
           .setParameter("searchTerm", search + "%")
           .setHint("org.hibernate.readOnly", true)
           .getSingleResult();

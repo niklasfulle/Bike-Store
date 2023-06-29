@@ -1,27 +1,26 @@
 package de.niklasfulle.bikestore.business.orderItem;
 
+import de.niklasfulle.bikestore.business.order.Order;
+import de.niklasfulle.bikestore.business.product.Product;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.JoinColumn;
-import jakarta.validation.constraints.Digits;
-
-import de.niklasfulle.bikestore.business.order.Order;
-import de.niklasfulle.bikestore.business.product.Product;
 
 /**
- * The Entity OrderItem represents the order_items table in the database.
- * OrderItem is responsible for the processing of the data of the OrderItem
- * objects in the database.
+ * The Entity OrderItem represents the order_items table in the database. OrderItem is responsible
+ * for the processing of the data of the OrderItem objects in the database.
  */
 @Entity
 @Table(name = "order_items")
 public class OrderItem implements Serializable {
+
   @Serial
   private static final long serialVersionUID = 1L;
 

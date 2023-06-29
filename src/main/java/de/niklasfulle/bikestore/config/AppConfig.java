@@ -5,8 +5,8 @@ import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthe
 import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
 
 /**
- * AppConfig implements that a CustomFormMechanism is implemented. It is used to
- * redirect to the login page if the user is not logged in.
+ * AppConfig implements that a CustomFormMechanism is implemented. It is used to redirect to the
+ * login page if the user is not logged in.
  */
 @CustomFormAuthenticationMechanismDefinition(loginToContinue = @LoginToContinue(loginPage = "/index.xhtml", useForwardToLogin = false))
 @ApplicationScoped

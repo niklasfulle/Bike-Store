@@ -1,20 +1,20 @@
 package de.niklasfulle.bikestore.business.store;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
- * The Entity Store represents the stores table in the database.
- * Store is responsible for the processing of the data of the Store
- * objects in the database.
+ * The Entity Store represents the stores table in the database. Store is responsible for the
+ * processing of the data of the Store objects in the database.
  */
 @Entity
 @Table(name = "stores")
 public class Store {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "store_id")

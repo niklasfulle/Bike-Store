@@ -1,52 +1,41 @@
 package de.niklasfulle.bikestore.view;
 
-import java.util.List;
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.validation.constraints.NotNull;
-import jakarta.enterprise.context.RequestScoped;
-
-import de.niklasfulle.bikestore.business.customer.Customer;
 import de.niklasfulle.bikestore.business.customer.CustomerService;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.validation.constraints.NotNull;
 
 /**
- * This class is part of the view layer. The CustomerController works with the
- * CustomerService to provide the data of the customer entity to the view.
+ * This class is part of the view layer. The CustomerController works with the CustomerService to
+ * provide the data of the customer entity to the view.
  */
 @Named
 @RequestScoped
 public class CustomerController {
-  // Services
-  @Inject
-  private CustomerService customerService;
 
   // Attributes
   @NotNull
   Integer customerId;
-
   @NotNull
   String firstName;
-
   @NotNull
   String lastName;
-
   @NotNull
   String email;
-
   @NotNull
   String phone;
-
   @NotNull
   String street;
-
   @NotNull
   String postalCode;
-
   @NotNull
   String city;
-
   @NotNull
   String state;
+  // Services
+  @Inject
+  private CustomerService customerService;
 
   // Getter and Setter
   public Integer getCustomerId() {

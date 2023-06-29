@@ -1,18 +1,19 @@
 package de.niklasfulle.bikestore.business.order;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The OrderService class is responsible for the processing of the data of the
- * Order Entity. It is used to communicate with the database.
+ * The OrderService class is responsible for the processing of the data of the Order Entity. It is
+ * used to communicate with the database.
  */
 @Stateless
 public class OrderService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -28,11 +29,10 @@ public class OrderService {
   }
 
   /**
-   * Updates Order in the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity. The order is updated by
-   * setting the new values. The EntityManager is flushed to save the changes. If
-   * the order is not found, it will not be updated.
-   * 
+   * Updates Order in the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity. The order is updated by setting the new values. The EntityManager
+   * is flushed to save the changes. If the order is not found, it will not be updated.
+   *
    * @param orderId id of Order to be updated
    */
   public void update(Integer orderId, Integer orderStatus, Date shippedDate, Date requiredDate) {
@@ -54,8 +54,8 @@ public class OrderService {
   }
 
   /**
-   * Removes Order from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes Order from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param orderId id of Order
    */
@@ -72,8 +72,8 @@ public class OrderService {
   }
 
   /**
-   * Gets the Order from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Gets the Order from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param orderId id of Order
    */
@@ -93,9 +93,8 @@ public class OrderService {
   }
 
   /**
-   * Receives all orders from the database, page and offset needed to calculate
-   * the final offset. If the Limit is 0 then it will be set 24. If the offset is
-   * smaller than 0 it will be set to 0.
+   * Receives all orders from the database, page and offset needed to calculate the final offset. If
+   * the Limit is 0 then it will be set 24. If the offset is smaller than 0 it will be set to 0.
    *
    * @param page   the page where the user is located
    * @param limit  the limit of records per page
@@ -116,9 +115,9 @@ public class OrderService {
     String orderBy = mapOrderOrderBy(order);
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT o FROM Order o WHERE o.customer.firstName LIKE :searchTerm OR o.customer.lastName LIKE :searchTerm OR o.staff.firstName LIKE :searchTerm OR o.staff.lastName LIKE :searchTerm ORDER BY "
-              + orderBy,
-          Order.class)
+              "SELECT o FROM Order o WHERE o.customer.firstName LIKE :searchTerm OR o.customer.lastName LIKE :searchTerm OR o.staff.firstName LIKE :searchTerm OR o.staff.lastName LIKE :searchTerm ORDER BY "
+                  + orderBy,
+              Order.class)
           .setParameter("searchTerm", search + "%")
           .setFirstResult(offset)
           .setMaxResults(limit)
@@ -158,8 +157,8 @@ public class OrderService {
   public long getOrdersCount(String search) {
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT COUNT(o) FROM Order o WHERE o.customer.firstName LIKE :searchTerm OR o.customer.lastName LIKE :searchTerm OR o.staff.firstName LIKE :searchTerm OR o.staff.lastName LIKE :searchTerm",
-          Long.class)
+              "SELECT COUNT(o) FROM Order o WHERE o.customer.firstName LIKE :searchTerm OR o.customer.lastName LIKE :searchTerm OR o.staff.firstName LIKE :searchTerm OR o.staff.lastName LIKE :searchTerm",
+              Long.class)
           .setParameter("searchTerm", search + "%")
           .setHint("org.hibernate.readOnly", true)
           .getSingleResult();

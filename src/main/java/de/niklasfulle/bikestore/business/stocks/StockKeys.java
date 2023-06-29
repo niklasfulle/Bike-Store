@@ -1,13 +1,13 @@
 package de.niklasfulle.bikestore.business.stocks;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.Column;
 import java.io.Serial;
 import java.io.Serializable;
-import jakarta.persistence.Column;
-import jakarta.enterprise.context.RequestScoped;
 
 /**
- * StockKeys is responsible for the storing the foreign keys of the table
- * Stocks. It includes the product-id and store-id
+ * StockKeys is responsible for the storing the foreign keys of the table Stocks. It includes the
+ * product-id and store-id
  */
 @RequestScoped
 public class StockKeys implements Serializable {

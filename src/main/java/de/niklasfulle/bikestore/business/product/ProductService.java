@@ -1,21 +1,21 @@
 package de.niklasfulle.bikestore.business.product;
 
-import java.util.List;
-import java.util.Objects;
-import java.math.BigDecimal;
+import de.niklasfulle.bikestore.business.brand.Brand;
+import de.niklasfulle.bikestore.business.category.Category;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-
-import de.niklasfulle.bikestore.business.brand.Brand;
-import de.niklasfulle.bikestore.business.category.Category;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The ProductService class is responsible for the processing of the data of the
- * Product Entity. It is used to communicate with the database.
+ * The ProductService class is responsible for the processing of the data of the Product Entity. It
+ * is used to communicate with the database.
  */
 @Stateless
 public class ProductService {
+
   // The EntityManager is used to communicate with the database.
   @PersistenceContext
   EntityManager em;
@@ -31,11 +31,11 @@ public class ProductService {
   }
 
   /**
-   * Updates Product in the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity. The product is updated by
-   * setting the new values. The EntityManager is flushed to save the changes. If
-   * the product is not found, it will not be updated.
-   * 
+   * Updates Product in the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity. The product is updated by setting the new values. The
+   * EntityManager is flushed to save the changes. If the product is not found, it will not be
+   * updated.
+   *
    * @param productId id of Product to be updated
    */
   public void update(Integer productId, String productName, Brand brand, Category category,
@@ -56,8 +56,8 @@ public class ProductService {
   }
 
   /**
-   * Removes Product from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Removes Product from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param productId id of Product
    */
@@ -74,8 +74,8 @@ public class ProductService {
   }
 
   /**
-   * Gets the Product from the database through the EntityManager. It uses the
-   * EntityManagers' find function to fetch the Entity.
+   * Gets the Product from the database through the EntityManager. It uses the EntityManagers' find
+   * function to fetch the Entity.
    *
    * @param productId id of Product
    */
@@ -95,9 +95,8 @@ public class ProductService {
   }
 
   /**
-   * Receives all products from the database page and offset needed to calculate
-   * the final offset. If the Limit is 0 then it will be set 24. If the offset is
-   * smaller than 0 it will be set to 0.
+   * Receives all products from the database page and offset needed to calculate the final offset.
+   * If the Limit is 0 then it will be set 24. If the offset is smaller than 0 it will be set to 0.
    *
    * @param page   the page where the user is located
    * @param limit  the limit of records per page
@@ -118,8 +117,8 @@ public class ProductService {
     String orderBy = mapProductOrderBy(order);
     if (!Objects.equals(search, "")) {
       return em.createQuery(
-          "SELECT p FROM Product p WHERE p.productName LIKE :searchTerm ORDER BY " + orderBy,
-          Product.class)
+              "SELECT p FROM Product p WHERE p.productName LIKE :searchTerm ORDER BY " + orderBy,
+              Product.class)
           .setParameter("searchTerm", search + "%")
           .setFirstResult(offset)
           .setMaxResults(limit)
@@ -162,7 +161,7 @@ public class ProductService {
   public long getProductsCount(String search) {
     if (!Objects.equals(search, "")) {
       return em.createQuery("SELECT COUNT(p) FROM Product p WHERE p.productName LIKE :searchTerm",
-          Long.class)
+              Long.class)
           .setParameter("searchTerm", search + "%")
           .setHint("org.hibernate.readOnly", true)
           .getSingleResult();
@@ -183,14 +182,14 @@ public class ProductService {
     Product product = getProduct(productId);
     // Count the order-items where the product is used as foreign key
     Long orderCheck = em.createQuery("SELECT COUNT(o) FROM OrderItem o WHERE o.product = :product",
-        Long.class)
+            Long.class)
         .setParameter("product", product)
         .setHint("org.hibernate.readOnly", true)
         .getSingleResult();
 
     // Count the stocks where the product is used as foreign key
     Long stockCheck = em.createQuery("SELECT COUNT(s) FROM Stock s WHERE s.product = :product",
-        Long.class)
+            Long.class)
         .setParameter("product", product)
         .setHint("org.hibernate.readOnly", true)
         .getSingleResult();
