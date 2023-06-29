@@ -1,11 +1,5 @@
 # Bike Store
 
-## Overview
-
-This project aims to implement a bike shop website. It's building a .war file, deployable on a wildfly webserver.<br>
-The website lets users access the bike shop and its PostgreSQL database.
-This was a project for university of my software engineering course.
-
 ## Table of contents
 
 -   [Overview](#overview)
@@ -14,6 +8,12 @@ This was a project for university of my software engineering course.
 -   [Login](#login)
 -   [Features](#features)
 -   [Screenshots](#screenshots)
+
+## Overview
+
+This project aims to implement a bike shop website. It's building a .war file, deployable on a wildfly webserver.<br>
+The website lets users access the bike shop and its PostgreSQL database.
+This was a project for university of my software engineering course.
 
 ## External dependencies
 
