@@ -1,6 +1,5 @@
 package de.niklasfulle.bikestore.view;
 
-import de.niklasfulle.bikestore.business.staff.StaffService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
@@ -25,20 +24,21 @@ import java.io.IOException;
 @RequestScoped
 public class LoginController {
 
+  // Services
   @Inject
-  private SecurityContext securityContext;
+  SecurityContext securityContext;
 
   @Inject
-  private FacesContext facesContext;
+  FacesContext facesContext;
 
-  @Inject
-  private StaffService staffService;
+  // Attributes
+  @NotNull
+  String email;
 
   @NotNull
-  private String email;
+  String phone;
 
-  @NotNull
-  private String phone;
+  // Methods
 
   /**
    * Handles current login form
@@ -152,7 +152,6 @@ public class LoginController {
   }
 
   // Getter and Setters
-
   public String getEmail() {
     return email;
   }
