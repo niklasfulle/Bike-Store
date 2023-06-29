@@ -1,11 +1,5 @@
 # Bike Store
 
-## Overview
-
-This project aims to implement a bike shop website. It's building a .war file, deployable on a wildfly webserver.<br>
-The website lets users access the bike shop and its PostgreSQL database.
-This was a project for university of my software engineering course.
-
 ## Table of contents
 
 -   [Overview](#overview)
@@ -15,6 +9,12 @@ This was a project for university of my software engineering course.
 -   [Features](#features)
 -   [Screenshots](#screenshots)
 
+## Overview
+
+This project aims to implement a bike shop website. It's building a .war file, deployable on a wildfly webserver.<br>
+The website lets users access the bike shop and its PostgreSQL database.
+This was a project for university of my software engineering course.
+
 ## External dependencies
 
 | Name         | Version | Link                                                                |
@@ -22,10 +22,11 @@ This was a project for university of my software engineering course.
 | Java JDK     | 19      | https://jdk.java.net/19/                                            |
 | Wildfly      | 28      | https://www.wildfly.org/                                            |
 | PostgreSQL   | 15.3    | https://www.postgresql.org/                                         |
-| JBDC Treiber | 42.6.0  | https://mvnrepository.com/artifact/org.postgresql/postgresql/42.6.0 |
+| JBDC Driver  | 42.6.0  | https://mvnrepository.com/artifact/org.postgresql/postgresql/42.6.0 |
 
 ## Build
 
+To build this project, clone this repository and install the external dependencies.<br>
 First import the file `bike-store.sql` into your PostgreSQL database. The File is located in `docs`.<br>
 
 You have to create a wildfly user with the add-user.bat or add-user.sh script in the bin folder of your wildfly installation.<br>
@@ -50,6 +51,7 @@ To build this project, clone this repository and execute:
 mvn clean package
 ```
 
+The JBDC Driver has to be into `standalone/deployments` in your wildfly installation.
 This creates a `bike-store.war` file, which has to be copied to your
 wildfly 28 installation into `standalone/deployments` in your wildfly
 installation.<br>Start the wildfly server with `standalone.bat` for windows
