@@ -1,15 +1,16 @@
 package de.niklasfulle.bikestore.business.category;
 
-import de.niklasfulle.bikestore.business.product.Product;
+import java.util.List;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.List;
+
+import de.niklasfulle.bikestore.business.product.Product;
 
 /**
  * The Entity Category represents the categories table in the database. Category is responsible for

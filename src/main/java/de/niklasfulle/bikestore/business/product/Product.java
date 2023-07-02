@@ -1,25 +1,26 @@
 package de.niklasfulle.bikestore.business.product;
 
-import de.niklasfulle.bikestore.business.brand.Brand;
-import de.niklasfulle.bikestore.business.category.Category;
-import de.niklasfulle.bikestore.business.orderItem.OrderItem;
-import de.niklasfulle.bikestore.business.stocks.Stock;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
+import java.util.List;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.Digits;
+
+import de.niklasfulle.bikestore.business.brand.Brand;
+import de.niklasfulle.bikestore.business.stocks.Stock;
+import de.niklasfulle.bikestore.business.category.Category;
+import de.niklasfulle.bikestore.business.orderItem.OrderItem;
 
 /**
  * The Entity Product represents the products table in the database. Product is responsible for the

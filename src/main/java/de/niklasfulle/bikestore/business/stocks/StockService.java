@@ -1,10 +1,10 @@
 package de.niklasfulle.bikestore.business.stocks;
 
+import java.util.List;
+import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * The StockService class is responsible for the processing of the data of the Stock Entity. It is

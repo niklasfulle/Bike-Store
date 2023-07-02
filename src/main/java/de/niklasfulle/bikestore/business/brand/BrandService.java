@@ -1,10 +1,10 @@
 package de.niklasfulle.bikestore.business.brand;
 
+import java.util.List;
+import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * The BrandService class is responsible for the processing of the data of the Brand Entity. It is

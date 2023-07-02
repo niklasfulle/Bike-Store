@@ -1,13 +1,14 @@
 package de.niklasfulle.bikestore.business.product;
 
-import de.niklasfulle.bikestore.business.brand.Brand;
-import de.niklasfulle.bikestore.business.category.Category;
+import java.util.List;
+import java.util.Objects;
+import java.math.BigDecimal;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Objects;
+
+import de.niklasfulle.bikestore.business.brand.Brand;
+import de.niklasfulle.bikestore.business.category.Category;
 
 /**
  * The ProductService class is responsible for the processing of the data of the Product Entity. It

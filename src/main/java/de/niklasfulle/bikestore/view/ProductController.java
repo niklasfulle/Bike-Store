@@ -1,22 +1,23 @@
 package de.niklasfulle.bikestore.view;
 
-import de.niklasfulle.bikestore.business.brand.Brand;
-import de.niklasfulle.bikestore.business.brand.BrandService;
-import de.niklasfulle.bikestore.business.category.Category;
-import de.niklasfulle.bikestore.business.category.CategoryService;
-import de.niklasfulle.bikestore.business.product.Product;
-import de.niklasfulle.bikestore.business.product.ProductService;
-import de.niklasfulle.bikestore.business.stocks.Stock;
-import de.niklasfulle.bikestore.business.stocks.StockKeys;
-import de.niklasfulle.bikestore.business.stocks.StockService;
-import de.niklasfulle.bikestore.business.store.StoreService;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.util.List;
+import java.math.BigDecimal;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.validation.constraints.NotNull;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.validation.constraints.DecimalMin;
+
+import de.niklasfulle.bikestore.business.brand.Brand;
+import de.niklasfulle.bikestore.business.stocks.Stock;
+import de.niklasfulle.bikestore.business.product.Product;
+import de.niklasfulle.bikestore.business.stocks.StockKeys;
+import de.niklasfulle.bikestore.business.category.Category;
+import de.niklasfulle.bikestore.business.brand.BrandService;
+import de.niklasfulle.bikestore.business.store.StoreService;
+import de.niklasfulle.bikestore.business.stocks.StockService;
+import de.niklasfulle.bikestore.business.product.ProductService;
+import de.niklasfulle.bikestore.business.category.CategoryService;
 
 /**
  * This class is part of the view layer. The ProductController works with the ProductService to

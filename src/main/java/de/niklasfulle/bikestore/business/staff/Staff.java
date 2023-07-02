@@ -1,14 +1,15 @@
 package de.niklasfulle.bikestore.business.staff;
 
-import de.niklasfulle.bikestore.business.store.Store;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+
+import de.niklasfulle.bikestore.business.store.Store;
 
 /**
  * The Entity Staff represents the staffs table in the database. Staff is responsible for the

@@ -1,11 +1,11 @@
 package de.niklasfulle.bikestore.business.store;
 
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 /**
  * The Entity Store represents the stores table in the database. Store is responsible for the

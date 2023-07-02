@@ -1,17 +1,18 @@
 package de.niklasfulle.bikestore.view;
 
-import de.niklasfulle.bikestore.business.brand.BrandService;
-import de.niklasfulle.bikestore.business.category.CategoryService;
-import de.niklasfulle.bikestore.business.customer.CustomerService;
-import de.niklasfulle.bikestore.business.order.OrderService;
-import de.niklasfulle.bikestore.business.product.ProductService;
-import de.niklasfulle.bikestore.business.staff.StaffService;
-import de.niklasfulle.bikestore.business.stocks.StockService;
-import de.niklasfulle.bikestore.business.store.StoreService;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import java.util.Objects;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
+
+import de.niklasfulle.bikestore.business.brand.BrandService;
+import de.niklasfulle.bikestore.business.order.OrderService;
+import de.niklasfulle.bikestore.business.staff.StaffService;
+import de.niklasfulle.bikestore.business.store.StoreService;
+import de.niklasfulle.bikestore.business.stocks.StockService;
+import de.niklasfulle.bikestore.business.product.ProductService;
+import de.niklasfulle.bikestore.business.customer.CustomerService;
+import de.niklasfulle.bikestore.business.category.CategoryService;
 
 /**
  * DataPagingController provides the functions for data paging

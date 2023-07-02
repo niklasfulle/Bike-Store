@@ -1,9 +1,9 @@
 package de.niklasfulle.bikestore.business.orderItem;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.Column;
 import java.io.Serial;
 import java.io.Serializable;
+import jakarta.persistence.Column;
+import jakarta.enterprise.context.RequestScoped;
 
 /**
  * OrderItemKeys is responsible for the storing the foreign keys of the table order_items. It

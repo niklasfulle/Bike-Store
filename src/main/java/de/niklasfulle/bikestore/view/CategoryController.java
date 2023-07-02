@@ -1,12 +1,13 @@
 package de.niklasfulle.bikestore.view;
 
+import java.util.List;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.validation.constraints.NotNull;
+import jakarta.enterprise.context.RequestScoped;
+
 import de.niklasfulle.bikestore.business.category.Category;
 import de.niklasfulle.bikestore.business.category.CategoryService;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * This class is part of the view layer. The CategoryController works with the CategoryService to

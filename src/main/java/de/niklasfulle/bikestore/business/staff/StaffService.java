@@ -1,11 +1,12 @@
 package de.niklasfulle.bikestore.business.staff;
 
-import de.niklasfulle.bikestore.business.store.Store;
+import java.util.List;
+import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Objects;
+
+import de.niklasfulle.bikestore.business.store.Store;
 
 /**
  * The StaffService class is responsible for the processing of the data of the Staff Entity. It is

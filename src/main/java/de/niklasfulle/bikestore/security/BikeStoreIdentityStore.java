@@ -1,17 +1,18 @@
 package de.niklasfulle.bikestore.security;
 
-import de.niklasfulle.bikestore.business.staff.Staff;
-import de.niklasfulle.bikestore.business.staff.StaffService;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.faces.context.FacesContext;
+import java.util.HashSet;
 import jakarta.inject.Inject;
+import java.util.Collections;
+import jakarta.servlet.http.HttpSession;
+import jakarta.faces.context.FacesContext;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.identitystore.IdentityStore;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
-import jakarta.security.enterprise.identitystore.IdentityStore;
-import jakarta.servlet.http.HttpSession;
-import java.util.Collections;
-import java.util.HashSet;
+
+import de.niklasfulle.bikestore.business.staff.Staff;
+import de.niklasfulle.bikestore.business.staff.StaffService;
 
 /**
  * BikeStoreIdentityStore implements the IdentityStore interface. It is used to validate the

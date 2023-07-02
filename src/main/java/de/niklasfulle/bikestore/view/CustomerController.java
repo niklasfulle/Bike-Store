@@ -1,12 +1,13 @@
 package de.niklasfulle.bikestore.view;
 
+import java.util.List;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.validation.constraints.NotNull;
+import jakarta.enterprise.context.RequestScoped;
+
 import de.niklasfulle.bikestore.business.customer.Customer;
 import de.niklasfulle.bikestore.business.customer.CustomerService;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * This class is part of the view layer. The CustomerController works with the CustomerService to

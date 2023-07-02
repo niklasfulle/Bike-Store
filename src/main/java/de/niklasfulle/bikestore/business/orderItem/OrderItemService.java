@@ -1,10 +1,11 @@
 package de.niklasfulle.bikestore.business.orderItem;
 
-import de.niklasfulle.bikestore.business.order.Order;
+import java.util.List;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.List;
+
+import de.niklasfulle.bikestore.business.order.Order;
 
 /**
  * The OrderItemService class is responsible for the processing of the data of the OrderItem Entity.

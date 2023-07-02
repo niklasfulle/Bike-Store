@@ -1,14 +1,15 @@
 package de.niklasfulle.bikestore.business.stocks;
 
-import de.niklasfulle.bikestore.business.product.Product;
-import de.niklasfulle.bikestore.business.store.Store;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.JoinColumn;
+
+import de.niklasfulle.bikestore.business.store.Store;
+import de.niklasfulle.bikestore.business.product.Product;
 
 /**
  * The Entity Stock represents the stocks table in the database. Stock is responsible for the

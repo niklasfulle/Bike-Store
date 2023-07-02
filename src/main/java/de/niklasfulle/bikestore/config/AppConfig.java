@@ -1,8 +1,8 @@
 package de.niklasfulle.bikestore.config;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
+import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 
 /**
  * AppConfig implements that a CustomFormMechanism is implemented. It is used to redirect to the

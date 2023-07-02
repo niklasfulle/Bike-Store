@@ -1,21 +1,21 @@
 package de.niklasfulle.bikestore.view;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.context.ExternalContext;
-import jakarta.faces.context.FacesContext;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.security.enterprise.AuthenticationStatus;
-import jakarta.security.enterprise.SecurityContext;
-import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
-import jakarta.security.enterprise.credential.Credential;
-import jakarta.security.enterprise.credential.Password;
-import jakarta.security.enterprise.credential.UsernamePasswordCredential;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.constraints.NotNull;
 import java.io.IOException;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.servlet.http.HttpSession;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ExternalContext;
+import jakarta.validation.constraints.NotNull;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.security.enterprise.credential.Password;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
 
 /**
  * LoginController handles the login form. It is used to authenticate the user.

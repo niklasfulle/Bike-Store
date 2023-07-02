@@ -1,10 +1,10 @@
 package de.niklasfulle.bikestore.business.store;
 
+import java.util.List;
+import java.util.Objects;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * The StoreService class is responsible for the processing of the data of the Store Entity. It is
