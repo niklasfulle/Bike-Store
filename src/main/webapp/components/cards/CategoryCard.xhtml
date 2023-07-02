@@ -1,0 +1,87 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="category_id" value="#{category_id}"/>
+  <ui:param name="category_name" value="#{category_name}"/>
+  <!--@elvariable id="role" type="String"-->
+  <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+  <div class="card">
+    <h3>Kategorie</h3>
+    <c:choose>
+      <c:when test="${role != 'USER2'}">
+        <div class="info" onclick="openCrudView('category_#{category_id}')">
+          <h:outputLabel for="categoryId1">Id</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="categoryId1"
+                  name="categoryId"
+                  value="#{category_id}"
+          />
+          <h:outputLabel for="categoryName1">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="categoryName1"
+                  name="categoryName"
+                  value="#{category_name}"
+          />
+        </div>
+        <div class="info_big" id="category_#{category_id}">
+          <div class="info_content">
+            <img src="../../resources/imgs/cross.png" alt="close icon"
+                 onclick="closeCrudView('category_#{category_id}')"/>
+            <h3>Kategorie</h3>
+            <h:outputLabel for="categoryIdMaster">Id</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="categoryIdMaster"
+                    name="categoryIdMaster"
+                    value="#{category_id}"
+            />
+            <h:outputLabel for="categoryNameMaster">Name</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="categoryNameMaster"
+                    name="categoryNameMaster"
+                    value="#{category_name}"
+            />
+            <div class="info_options">
+              <button class="btn disable" disabled="disabled">Bearbeiten</button>
+              <button class="btn"
+                      onclick="window.location.href = 'Delete.xhtml?delete=#{category_id}'">Löschen
+              </button>
+            </div>
+          </div>
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div class="info">
+          <h:outputLabel for="categoryId2">Id</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="categoryId2"
+                  name="categoryId"
+                  value="#{category_id}"
+          />
+          <h:outputLabel for="categoryName2">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="categoryName2"
+                  name="categoryName"
+                  value="#{category_name}"
+          />
+        </div>
+      </c:otherwise>
+    </c:choose>
+  </div>
+</ui:composition>
+</body>
+</html>

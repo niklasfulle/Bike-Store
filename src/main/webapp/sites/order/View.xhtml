@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+      <div class="optionsSmall">
+        <img alt="arrow down" src="../../resources/imgs/arrow.png" onclick="revealOptionsHidden()"
+             id="optionsImg"/>
+      </div>
+      <div class="options" id="options">
+        <ui:insert name="optionsInput">
+          <ui:include src="../../components/optionsInput.xhtml">
+          </ui:include>
+        </ui:insert>
+      </div>
+      <div class="frame">
+        <div class="cards">
+          <ui:repeat
+                  var="order"
+                  value="#{orderController.getAllOrdersParameter(request.getParameter('page'), request.getParameter('limit'), request.getParameter('order'), request.getParameter('search'))}"
+          >
+            <ui:insert name="card">
+              <ui:include src="../../components/cards/OrderCard.xhtml">
+                <ui:param name="order_id" value="#{order.getOrderId()}"/>
+                <ui:param
+                        name="order_customer_firstname"
+                        value="#{order.getCustomer().getFirstName()}"
+                />
+                <ui:param
+                        name="order_customer_lastname"
+                        value="#{order.getCustomer().getLastName()}"
+                />
+                <ui:param
+                        name="order_staff_firstname"
+                        value="#{order.getStaff().getFirstName()}"
+                />
+                <ui:param
+                        name="order_staff_lastname"
+                        value="#{order.getStaff().getLastName()}"
+                />
+                <ui:param
+                        name="order_store_name"
+                        value="#{order.getStore().getStoreName()}"
+                />
+                <ui:param name="order_order_date" value="#{order.getOrderDate()}"/>
+                <ui:param
+                        name="order_requierd_date"
+                        value="#{order.getRequiredDate()}"
+                />
+                <ui:param
+                        name="order_shipped_date"
+                        value="#{order.getShippedDate()}"
+                />
+                <ui:param
+                        name="order_order_status"
+                        value="#{order.getOrderStatus()}"
+                />
+              </ui:include>
+            </ui:insert>
+          </ui:repeat>
+        </div>
+        <ui:insert name="data_paging">
+          <ui:include src="../../components/utils/dataPagingButtons.xhtml">
+            <ui:param name="link"
+                      value="#{dataPagingController.linkString(request.getParameter('limit'), request.getParameter('order'), request.getParameter('search'))}"/>
+          </ui:include>
+        </ui:insert>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

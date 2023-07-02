@@ -1,0 +1,141 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="xhtml"
+>
+<body>
+<ui:composition>
+  <div class="order_items">
+    <h:outputLabel>Produkte</h:outputLabel>
+    <h:selectOneMenu value="#{orderController.productId1}" id="product1"
+                     name="product1" validator="#{orderController.validateSelectProduct}">
+      <f:selectItem itemValue="0" itemLabel="Auswählen"/>
+      <f:selectItems value="#{productController.getAllProducts()}" var="product"
+                     itemValue="#{product.getProductId()}"
+                     itemLabel="#{product.getProductName()}"/>
+    </h:selectOneMenu>
+    <h:inputText
+            type="text"
+            id="productDiscount1"
+            name="productDiscount1"
+            value="#{orderController.discount1}"
+            p:placeholder="Rabatt (0.00)"
+            required="true"
+    >
+      <f:convertNumber minFractionDigits="2" pattern="0.00"/>
+      <f:validateDoubleRange minimum="0" maximum="1"/>
+    </h:inputText>
+    <h:inputText
+            type="text"
+            id="productQuantity1"
+            name="productQuantity1"
+            value="#{orderController.quantity1}"
+            p:placeholder="Anzahl"
+            required="true"
+    />
+    <h:selectOneMenu value="#{orderController.productId2}" id="product2"
+                     name="product2">
+      <f:selectItem itemValue="0" itemLabel="Auswählen"/>
+      <f:selectItems value="#{productController.getAllProducts()}" var="product"
+                     itemValue="#{product.getProductId()}"
+                     itemLabel="#{product.getProductName()}"/>
+    </h:selectOneMenu>
+    <h:inputText
+            type="text"
+            id="productDiscount2"
+            name="productDiscount2"
+            value="#{orderController.discount2}"
+            p:placeholder="Rabatt (0.00)"
+    >
+      <f:convertNumber minFractionDigits="2" pattern="0.00"/>
+      <f:validateDoubleRange minimum="0" maximum="1"/>
+    </h:inputText>
+    <h:inputText
+            type="text"
+            id="productQuantity2"
+            name="productQuantity2"
+            value="#{orderController.quantity2}"
+            p:placeholder="Anzahl"
+    />
+    <h:selectOneMenu value="#{orderController.productId3}" id="product3"
+                     name="product3">
+      <f:selectItem itemValue="0" itemLabel="Auswählen"/>
+      <f:selectItems value="#{productController.getAllProducts()}" var="product"
+                     itemValue="#{product.getProductId()}"
+                     itemLabel="#{product.getProductName()}"/>
+    </h:selectOneMenu>
+    <h:inputText
+            type="text"
+            id="productDiscount3"
+            name="productDiscount3"
+            value="#{orderController.discount3}"
+            p:placeholder="Rabatt (0.00)"
+    >
+      <f:convertNumber minFractionDigits="2" pattern="0.00"/>
+      <f:validateDoubleRange minimum="0" maximum="1"/>
+    </h:inputText>
+    <h:inputText
+            type="text"
+            id="productQuantity3"
+            name="productQuantity3"
+            value="#{orderController.quantity3}"
+            p:placeholder="Anzahl"
+    />
+    <h:selectOneMenu value="#{orderController.productId4}" id="product4"
+                     name="product4">
+      <f:selectItem itemValue="0" itemLabel="Auswählen"/>
+      <f:selectItems value="#{productController.getAllProducts()}" var="product"
+                     itemValue="#{product.getProductId()}"
+                     itemLabel="#{product.getProductName()}"/>
+    </h:selectOneMenu>
+    <h:inputText
+            type="text"
+            id="productDiscount4"
+            name="productDiscount4"
+            value="#{orderController.discount4}"
+            p:placeholder="Rabatt (0.00)"
+    >
+      <f:convertNumber minFractionDigits="2" pattern="0.00"/>
+      <f:validateDoubleRange minimum="0" maximum="1"/>
+    </h:inputText>
+    <h:inputText
+            type="text"
+            id="productQuantity4"
+            name="productQuantity4"
+            value="#{orderController.quantity4}"
+            p:placeholder="Anzahl"
+    />
+    <h:selectOneMenu value="#{orderController.productId5}" id="product5"
+                     name="product5">
+      <f:selectItem itemValue="0" itemLabel="Auswählen"/>
+      <f:selectItems value="#{productController.getAllProducts()}" var="product"
+                     itemValue="#{product.getProductId()}"
+                     itemLabel="#{product.getProductName()}"/>
+    </h:selectOneMenu>
+    <h:inputText
+            type="text"
+            id="productDiscount5"
+            name="productDiscount5"
+            value="#{orderController.discount5}"
+            p:placeholder="Rabatt (0.00)"
+    >
+      <f:convertNumber minFractionDigits="2" pattern="0.00"/>
+      <f:validateDoubleRange minimum="0" maximum="1"/>
+    </h:inputText>
+    <h:inputText
+            type="text"
+            id="productQuantity5"
+            name="productQuantity5"
+            value="#{orderController.quantity5}"
+            p:placeholder="Anzahl"
+    />
+  </div>
+  <h:message class="errorMessage" for="product1"/>
+</ui:composition>
+</body>
+</html>

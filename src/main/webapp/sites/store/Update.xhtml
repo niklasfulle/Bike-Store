@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="store"
+                value="#{storeController.getStore(request.getParameter('update'))}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Laden Aktualisieren</h3>
+          <h:form styleClass="updateForm">
+            <h:inputText
+                    type="text"
+                    id="storeId"
+                    name="storeId"
+                    value="#{storeController.storeId}"
+                    style="display: none"
+            />
+            <script type="application/javascript">
+              setValueById("updateForm", "storeId", "#{store.getStoreId()}");
+            </script>
+            <h:outputLabel for="storeName">Name</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="storeName"
+                    name="storeName"
+                    styleClass="storeNameInput"
+                    value="#{storeController.storeName}"
+                    onkeyup="checkIfEmpty('storeNameInput', 'Name')"
+            />
+            <h:message class="errorMessage" for="storeName"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "storeName", "#{store.getStoreName()}");
+            </script>
+            <h:outputLabel for="storeEmail">E-Mail</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="storeEmail"
+                    name="storeEmail"
+                    styleClass="storeEmailInput"
+                    value="#{storeController.email}"
+                    onkeyup="checkIfEmpty('storeEmailInput', 'E-Mail')"
+            />
+            <h:message class="errorMessage" for="storeEmail"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "storeEmail", "#{store.getEmail()}");
+            </script>
+            <h:outputLabel for="storePhone">Telefonnummer</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="storePhone"
+                    name="storePhone"
+                    styleClass="storePhoneInput"
+                    value="#{storeController.phone}"
+                    onkeyup="checkIfEmpty('storePhoneInput', 'Telefonnummer')"
+            />
+            <h:message class="errorMessage" for="storePhone"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "storePhone", "#{store.getPhone()}");
+            </script>
+            <h:outputLabel for="storeStreet">Straße</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="storeStreet"
+                    name="storeStreet"
+                    styleClass="storeStreetInput"
+                    value="#{storeController.street}"
+                    onkeyup="checkIfEmpty('storeStreetInput', 'Straße')"
+            />
+            <h:message class="errorMessage" for="storeStreet"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "storeStreet", "#{store.getStreet()}");
+            </script>
+            <h:outputLabel for="storePostalcode">Postleitzahl</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="storePostalcode"
+                    name="storePostalcode"
+                    styleClass="storePostalcodeInput"
+                    value="#{storeController.zipCode}"
+                    onkeyup="checkIfEmpty('storePostalcodeInput', 'Postleitzahl')"
+            />
+            <h:message class="errorMessage" for="storePostalcode"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "storePostalcode", "#{store.getPostalCode()}");
+            </script>
+            <h:outputLabel for="storeCity">Stadt</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="storeCity"
+                    name="storeCity"
+                    styleClass="storeCityInput"
+                    value="#{storeController.city}"
+                    onkeyup="checkIfEmpty('storeCityInput', 'Stadt')"
+            />
+            <h:message class="errorMessage" for="storeCity"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "storeCity", "#{store.getCity()}");
+            </script>
+            <h:outputLabel for="storeState">State</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="storeState"
+                    name="storeState"
+                    styleClass="storeStateInput"
+                    value="#{storeController.state}"
+                    onkeyup="checkIfEmpty('storeStateInput', 'State')"
+            />
+            <h:message class="errorMessage" for="storeState"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "storeState", "#{store.getState()}");
+            </script>
+            <p class="errorMessage" style="display: none" id="errorMessageP"></p>
+            <div class="crud_buttons">
+              <h:commandButton action="#{storeController.updateStore()}" value="Speichern"
+                               styleClass="saveButtonForm" id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

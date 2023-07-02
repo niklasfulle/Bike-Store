@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="staff"
+                value="#{staffController.getStaff(request.getParameter('delete'))}"/>
+      <ui:param name="deleteCheck" value="#{staffController.removeCheck(staff.getStaffId())}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Mitarbeiter Löschen</h3>
+          <h:outputLabel for="staffFirstname">Vorname</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffFirstname"
+                  name="staffFirstname"
+                  value="#{staff.getFirstName()}"
+          />
+          <h:outputLabel for="staffLastName">Nachname</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffLastName"
+                  name="staffLastName"
+                  value="#{staff.getLastName()}"
+          />
+          <h:outputLabel for="staffEmail">E-Mail</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffEmail"
+                  name="staffEmail"
+                  value="#{staff.getEmail()}"
+          />
+          <h:outputLabel for="staffPhone">Telefonnummer</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffPhone"
+                  name="staffPhone"
+                  value="#{staff.getPhone()}"
+          />
+          <h:outputLabel for="staffManager">Manager</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffManager"
+                  name="staffManager"
+                  value="#{staff.getManager().getFirstName()} #{staff.getManager().getLastName()}"
+          />
+          <h:outputLabel for="staffStore">Laden</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffStore"
+                  name="staffStore"
+                  value="#{staff.getStore().getStoreName()}"
+          />
+          <p style="#{deleteCheck ? '' : 'display: none'}">Mitarbeiter #{staff.getFirstName()} #{staff.getLastName()} wirklich Löschen?</p>
+          <p style="#{deleteCheck ? 'display: none' : ''}">Mitarbeiter #{staff.getFirstName()} #{staff.getLastName()} kann nicht gelöscht werden.</p>
+          <h:form styleClass="deleteForm">
+            <div class="crud_buttons">
+              <h:inputText id="staffIdMaster" value="#{staffController.staffId}"
+                           style="display: none"/>
+              <script type="application/javascript">
+                setValueById("deleteForm", "staffIdMaster", "#{staff.getStaffId()}");
+              </script>
+              <h:commandButton style="#{deleteCheck ? '' : 'display: none'}"
+                               action="#{staffController.removeStaff()}" value="Löschen"
+                               id="removeButton"/>
+              <h:commandButton style="#{deleteCheck ? 'display: none' : ''}"
+                               action="#{staffController.removeStaff()}" value="Löschen"
+                               id="removeButtonDisabled" disabled="true"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

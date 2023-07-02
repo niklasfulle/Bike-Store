@@ -1,0 +1,81 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="site" value="#{request.getServletPath().split('\\/')[2]}"></ui:param>
+  <ui:param name="buttons"
+            value="#{dataPagingController.dataPagingButtonsCheck(request.getParameter('page'), request.getParameter('limit'), site, request.getParameter('search'))}"></ui:param>
+  <ui:param name="page" value="#{request.getParameter('page')}"></ui:param>
+  <ui:param name="maxPage"
+            value="#{dataPagingController.maxPage(request.getParameter('limit'), site, request.getParameter('search'))}"></ui:param>
+  <ui:param name="link" value="#{link}"></ui:param>
+  <div class="data_paging">
+    <div>
+      <c:if test="#{buttons == 0 || buttons == 1}">
+        <a class='data_paging_active' href=''>1</a>
+      </c:if>
+      <c:if test="#{buttons == 2}">
+        <a class='data_paging_active' href=''>1</a>
+        <a class='' href='?page=2#{link}'>2</a>
+      </c:if>
+      <c:if test="#{buttons == 3}">
+        <a class='' href='?page=1#{link}'>1</a>
+        <a class='data_paging_active' href='?page=2#{link}'>2</a>
+      </c:if>
+      <c:if test="#{buttons == 4}">
+        <a class='data_paging_active' href=''>1</a>
+        <a class='' href='?page=2#{link}'>2</a>
+        <a class='' href='?page=3#{link}'>3</a>
+      </c:if>
+      <c:if test="#{buttons == 5}">
+        <a class='data_paging_active' href=''>1</a>
+        <a class='' href='?page=2#{link}'>2</a>
+        <a class='' href='?page=3#{link}'>3</a>
+        <a class='' href='?page=#{maxPage}#{link}'>#{maxPage}</a>
+      </c:if>
+      <c:if test="#{buttons == 6}">
+        <a class='' href='?page=1#{link}'>1</a>
+        <a class='data_paging_active' href='?page=2#{link}'>2</a>
+        <a class='' href='?page=3#{link}'>3</a>
+      </c:if>
+      <c:if test="#{buttons == 7}">
+        <a class='' href='?page=1#{link}'>1</a>
+        <a class='' href='?page=2#{link}'>2</a>
+        <a class='data_paging_active' href='?page=3#{link}'>3</a>
+      </c:if>
+      <c:if test="#{buttons == 8}">
+        <a class='' href='?page=1#{link}'>1</a>
+        <a class='data_paging_active' href='?page=2#{link}'>2</a>
+        <a class='' href='?page=3#{link}'>3</a>
+        <a class='' href='?page=#{maxPage}#{link}'>#{maxPage}</a>
+      </c:if>
+      <c:if test="#{buttons == 9}">
+        <a class='' href='?page=1#{link}'>1</a>
+        <a class='' href='?page=#{page - 1}#{link}'>#{page - 1}</a>
+        <a class='data_paging_active' href='?page=#{page}#{link}'>#{page}</a>
+        <a class='' href='?page=#{maxPage}#{link}'>#{maxPage}</a>
+      </c:if>
+      <c:if test="#{buttons == 10}">
+        <a class='' href='?page=1#{link}'>1</a>
+        <a class='' href='?page=#{page - 1}#{link}'>#{page - 1}</a>
+        <a class='data_paging_active' href='?page=#{page}#{link}'>#{page}</a>
+        <a class='' href='?page=#{page + 1}#{link}'>#{page + 1}</a>
+        <a class='' href='?page=#{maxPage}#{link}'>#{maxPage}</a>
+      </c:if>
+      <c:if test="#{buttons == 11}">
+        <a class='' href='?page=1#{link}'>1</a>
+        <a class='' href='?page=#{page - 2}#{link}'>#{page - 2}</a>
+        <a class='' href='?page=#{page - 1}#{link}'>#{page - 1}</a>
+        <a class='data_paging_active' href=''>#{page}</a>
+      </c:if>
+    </div>
+  </div>
+</ui:composition>
+</body>
+</html>

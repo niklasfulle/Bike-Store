@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="stock"
+                value="#{stockController.getStock(request.getParameter('update'))}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Bestand Aktualisieren</h3>
+          <h:form styleClass="updateForm">
+            <h:inputText
+                    type="text"
+                    id="stockId"
+                    name="stockId"
+                    value="#{stockController.stockId}"
+                    style=""
+            />
+            <script type="application/javascript">
+              setValueById("updateForm", "stockId",
+                  "#{stock.getProduct().getProductId()}_#{stock.getStore().getStoreId()}");
+            </script>
+            <h:outputLabel for="productName">Produkt Name</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="productName"
+                    name="productName"
+                    value="#{stock.getProduct().getProductName()}"
+            />
+            <h:outputLabel for="storeName">Laden Name</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="storeName"
+                    name="storeName"
+                    value="#{stock.getStore().getStoreName()}"
+            />
+            <h:outputLabel for="stockQuantity">Anzahl</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="stockQuantity"
+                    name="stockQuantity"
+                    styleClass="stockQuantityInput"
+                    value="#{stockController.quantity}"
+                    onkeyup="checkIfEmpty('stockQuantityInput', 'Anzahl')"
+            />
+            <script type="application/javascript">
+              setValueById("updateForm", "stockQuantity", "#{stock.getQuantity()}");
+            </script>
+            <p class="errorMessage" style="display: none" id="errorMessageP"></p>
+            <div class="crud_buttons">
+              <h:commandButton action="#{stockController.updateStock()}" value="Speichern"
+                               styleClass="saveButtonForm" id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

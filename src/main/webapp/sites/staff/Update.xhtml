@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="staff"
+                value="#{staffController.getStaff(request.getParameter('update'))}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Mitarbeiter Aktualisieren</h3>
+          <h:form styleClass="updateForm">
+            <h:inputText
+                    type="text"
+                    id="staffId"
+                    name="staffId"
+                    value="#{staffController.staffId}"
+                    style="display: none"
+            />
+            <script type="application/javascript">
+              setValueById("updateForm", "staffId", "#{staff.getStaffId()}");
+            </script>
+            <h:outputLabel for="staffFirstname">Vorname</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="staffFirstname"
+                    name="staffFirstname"
+                    styleClass="staffFirstnameInput"
+                    value="#{staffController.firstName}"
+                    onkeyup="checkIfEmpty('staffFirstnameInput', 'Vorname')"
+            />
+            <h:message class="errorMessage" for="staffFirstname"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "staffFirstname", "#{staff.getFirstName()}");
+            </script>
+            <h:outputLabel for="staffLastname">Nachname</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="staffLastname"
+                    name="staffLastname"
+                    styleClass="staffLastnameInput"
+                    value="#{staffController.lastName}"
+                    onkeyup="checkIfEmpty('staffLastnameInput', 'Nachname')"
+            />
+            <h:message class="errorMessage" for="staffLastname"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "staffLastname", "#{staff.getLastName()}");
+            </script>
+            <h:outputLabel for="staffEmail">E-Mail</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="staffEmail"
+                    name="staffEmail"
+                    styleClass="staffEmailInput"
+                    value="#{staffController.email}"
+                    onkeyup="checkIfEmpty('staffEmailInput', 'E-Mail')"
+            />
+            <h:message class="errorMessage" for="staffEmail"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "staffEmail", "#{staff.getEmail()}");
+            </script>
+            <h:outputLabel for="staffPhone">Telefonnummer</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="staffPhone"
+                    name="staffPhone"
+                    styleClass="staffPhoneInput"
+                    value="#{staffController.phone}"
+                    onkeyup="checkIfEmpty('staffPhoneInput', 'Telefonnummer')"
+            />
+            <h:message class="errorMessage" for="staffPhone"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "staffPhone", "#{staff.getPhone()}");
+            </script>
+            <h:outputLabel for="managerId">Manager</h:outputLabel>
+            <h:selectOneMenu value="#{staffController.managerId}" id="managerId"
+                             name="managerId">
+              <f:selectItems value="#{staffController.getAllStaffs()}" var="manager"
+                             itemValue="#{manager.getStaffId()}"
+                             itemLabel="#{manager.getFirstName()} #{manager.getLastName()}"/>
+            </h:selectOneMenu>
+            <script type="application/javascript">
+              setValueById("updateForm", "managerId", "#{staff.getManager().getStaffId()}");
+            </script>
+            <h:outputLabel for="storeId">Laden</h:outputLabel>
+            <h:selectOneMenu value="#{staffController.storeId}" id="storeId" name="storeId">
+              <f:selectItems value="#{storeController.getAllStores()}" var="store"
+                             itemValue="#{store.getStoreId()}" itemLabel="#{store.getStoreName()}"/>
+            </h:selectOneMenu>
+            <script type="application/javascript">
+              setValueById("updateForm", "storeId", "#{staff.getStore().getStoreId()}");
+            </script>
+            <h:outputLabel for="staffActive">Beschäftigung</h:outputLabel>
+            <h:selectOneMenu value="#{staffController.active}" id="staffActive" name="staffActive">
+              <f:selectItem itemValue="1" itemLabel="Aktiv"/>
+              <f:selectItem itemValue="0" itemLabel="Inaktiv"/>
+            </h:selectOneMenu>
+            <script type="application/javascript">
+              setValueById("updateForm", "staffActive", "#{staff.getActive()}");
+            </script>
+            <p class="errorMessage" style="display: none" id="errorMessageP"></p>
+            <div class="crud_buttons">
+              <h:commandButton action="#{staffController.updateStaff()}" value="Speichern"
+                               styleClass="saveButtonForm" id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

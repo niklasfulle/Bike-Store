@@ -1,0 +1,116 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="stock_id" value="#{stock_id}"/>
+  <ui:param name="product_name" value="#{product_name}"/>
+  <ui:param name="store_name" value="#{store_name}"/>
+  <ui:param name="quantity" value="#{quantity}"/>
+  <!--@elvariable id="role" type="String"-->
+  <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+  <div class="card">
+    <h3>Lager</h3>
+    <c:choose>
+      <c:when test="${role != 'USER2'}">
+        <div class="info" onclick="openCrudView('stocks_#{stock_id}')">
+          <h:outputLabel for="productName1">Produkt Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="productName1"
+                  name="productName"
+                  value="#{product_name}"
+          />
+          <h:outputLabel for="storeName1">Laden Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeName1"
+                  name="storeName1"
+                  value="#{store_name}"
+          />
+          <h:outputLabel for="quantity1">Anzahl</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="quantity1"
+                  name="quantity"
+                  value="#{quantity}"
+          />
+        </div>
+        <div class="info_big" id="stocks_#{stock_id}">
+          <div class="info_content">
+            <img
+                    src="../../resources/imgs/cross.png"
+                    alt="close icon"
+                    onclick="closeCrudView('stocks_#{stock_id}')"
+            />
+            <h3>Lager</h3>
+            <h:outputLabel for="product_name_view">Produkt Name</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="product_name_view"
+                    name="product_name"
+                    value="#{product_name}"
+            />
+            <h:outputLabel for="store_name_view">Laden Name</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="store_name_view"
+                    name="store_name"
+                    value="#{store_name}"
+            />
+            <h:outputLabel for="quantity_view">Bestand</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="quantity_view"
+                    name="quantity"
+                    value="#{quantity}"
+            />
+            <div class="info_options">
+              <button
+                      class="btn"
+                      onclick="window.location.href = 'Update.xhtml?update=#{stock_id}'"
+              >
+                Bearbeiten
+              </button>
+              <button class="btn disable" disabled="disabled">Löschen</button>
+            </div>
+          </div>
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div class="info">
+          <h:outputLabel for="productName2">Produkt Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="productName2"
+                  name="productName"
+                  value="#{product_name}"
+          />
+          <h:outputLabel for="storeName2">Laden Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeName2"
+                  name="storeName"
+                  value="#{store_name}"
+          />
+          <h:outputLabel for="quantity2">Bestand</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="quantity2"
+                  name="quantity"
+                  value="#{quantity}"
+          />
+        </div>
+      </c:otherwise>
+    </c:choose>
+  </div>
+</ui:composition>
+</body>
+</html>

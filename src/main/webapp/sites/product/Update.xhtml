@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="product"
+                value="#{productController.getProduct(request.getParameter('update'))}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Produkt Aktualisieren</h3>
+          <h:form styleClass="updateForm">
+            <h:inputText
+                    type="text"
+                    id="productId"
+                    name="productId"
+                    value="#{productController.productId}"
+                    style="display: none"
+            />
+            <script type="application/javascript">
+              setValueById("updateForm", "productId", "#{product.getProductId()}");
+            </script>
+            <h:outputLabel for="productName">Name</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="productName"
+                    name="productName"
+                    styleClass="productNameInput"
+                    value="#{productController.productName}"
+                    onkeyup="checkIfEmpty('productNameInput', 'Name')"
+            />
+            <h:message class="errorMessage" for="productName"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "productName", "#{product.getProductName()}");
+            </script>
+            <h:outputLabel for="productBrand">Marke</h:outputLabel>
+            <h:selectOneMenu value="#{productController.brandId}" id="productBrand"
+                             name="productBrand">
+              <f:selectItems value="#{brandController.getAllBrands()}" var="brand"
+                             itemValue="#{brand.getBrandId()}" itemLabel="#{brand.getBrandName()}"/>
+            </h:selectOneMenu>
+            <script type="application/javascript">
+              setValueById("updateForm", "productBrand", "#{product.getBrand().getBrandId()}");
+            </script>
+            <h:outputLabel for="productCategory">Kategorie</h:outputLabel>
+            <h:selectOneMenu value="#{productController.categoryId}" id="productCategory"
+                             name="productCategory">
+              <f:selectItems value="#{categoryController.getAllCategories()}" var="category"
+                             itemValue="#{category.getCategoryId()}"
+                             itemLabel="#{category.getCategoryName()}"/>
+            </h:selectOneMenu>
+            <script type="application/javascript">
+              setValueById("updateForm", "productCategory",
+                  "#{product.getCategory().getCategoryId()}");
+            </script>
+            <h:outputLabel for="modelYear">Model Jahr</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="modelYear"
+                    name="modelYear"
+                    styleClass="modelYearInput"
+                    value="#{productController.modelYear}"
+                    onkeyup="checkIfEmpty('modelYearInput', 'Model Jahr')"
+            />
+            <h:message class="errorMessage" for="modelYear"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "modelYear", "#{product.getModelYear()}");
+            </script>
+            <h:outputLabel for="listPrice">Listen Preis</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="listPrice"
+                    name="listPrice"
+                    styleClass="listPriceInput"
+                    value="#{productController.listPrice}"
+                    onkeyup="checkIfEmpty('listPriceInput', 'Listen Preis')"
+            />
+            <h:message class="errorMessage" for="listPrice"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "listPrice", "#{product.getListPrice()}");
+            </script>
+            <p class="errorMessage" style="display: none" id="errorMessageP"></p>
+            <div class="crud_buttons">
+              <h:commandButton action="#{productController.updateProduct()}" value="Speichern"
+                               styleClass="saveButtonForm" id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

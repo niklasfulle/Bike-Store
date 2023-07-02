@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="customer"
+                value="#{customerController.getCustomer(request.getParameter('delete'))}"/>
+      <!--@elvariable id="deleteCheck" type="Boolean"-->
+      <ui:param name="deleteCheck"
+                value="#{customerController.removeCheck(customer.getCustomerId())}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Kunde Löschen</h3>
+          <h:outputLabel for="customerFirstname">Vorname</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="customerFirstname"
+                  name="customerFirstname"
+                  value="#{customer.getFirstName()}"
+          />
+          <h:outputLabel for="customerLastname">Nachname</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="customerLastname"
+                  name="customerLastname"
+                  value="#{customer.getLastName()}"
+          />
+          <h:outputLabel for="customerEmail">E-Mail</h:outputLabel>
+          <h:outputText type="text" id="customerEmail" name="customerEmail"
+                        value="#{customer.getEmail()}"/>
+          <h:outputLabel for="customerPhone">Telefonnummer</h:outputLabel>
+          <h:outputText type="text" id="customerPhone" name="customerPhone"
+                        value="#{customer.getPhone()}"/>
+          <h:outputLabel for="customerStreet">Straße</h:outputLabel>
+          <h:outputText type="text" id="customerStreet" name="customerStreet"
+                        value="#{customer.getStreet()}"/>
+          <h:outputLabel for="customerPostalcode">Postleitzahl</h:outputLabel>
+          <h:outputText type="text" id="customerPostalcode" name="customerPostalcode"
+                        value="#{customer.getPostalCode()}"/>
+          <h:outputLabel for="customerCity">Stadt</h:outputLabel>
+          <h:outputText type="text" id="customerCity" name="customerCity"
+                        value="#{customer.getCity()}"/>
+          <h:outputLabel for="customerState">State</h:outputLabel>
+          <h:outputText type="text" id="customerState" name="customerState"
+                        value="#{customer.getState()}"/>
+          <p style="#{deleteCheck ? '' : 'display: none'}">Kunde #{customer.getFirstName()} #{customer.getLastName()} wirklich Löschen?</p>
+          <p style="#{deleteCheck ? 'display: none' : ''}">Kunde #{customer.getFirstName()} #{customer.getLastName()} kann nicht gelöscht werden.</p>
+          <h:form styleClass="deleteForm">
+            <div class="crud_buttons">
+              <h:inputText id="customerIdMaster" value="#{customerController.customerId}"
+                           style="display: none"/>
+              <script type="application/javascript">
+                setValueById("deleteForm", "customerIdMaster", "#{customer.getCustomerId()}");
+              </script>
+              <h:commandButton style="#{deleteCheck ? '' : 'display: none'}"
+                               action="#{customerController.removeCustomer()}" value="Löschen"
+                               id="removeButton"/>
+              <h:commandButton style="#{deleteCheck ? 'display: none' : ''}"
+                               action="#{customerController.removeCustomer()}" value="Löschen"
+                               id="removeButtonDisabled" disabled="true"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

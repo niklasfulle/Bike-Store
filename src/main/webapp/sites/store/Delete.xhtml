@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="store"
+                value="#{storeController.getStore(request.getParameter('delete'))}"/>
+      <ui:param name="deleteCheck" value="#{storeController.removeCheck(store.getStoreId())}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Laden Löschen</h3>
+          <h:outputLabel for="storeName">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeName"
+                  name="storeName"
+                  value="#{store.getStoreName()}"
+          />
+          <h:outputLabel for="storeEmail">E-Mail</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeEmail"
+                  name="storeEmail"
+                  value="#{store.getEmail()}"
+          /><h:outputLabel for="storePhone">Telefonnummer</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storePhone"
+                  name="storePhone"
+                  value="#{store.getPhone()}"
+          />
+          <h:outputLabel for="storeStreet">Straße</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeStreet"
+                  name="storeStreet"
+                  value="#{store.getStreet()}"
+          />
+          <h:outputLabel for="storePostalcode">Postleitzahl</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storePostalcode"
+                  name="storePostalcode"
+                  value="#{store.getPostalCode()}€"
+          />
+          <h:outputLabel for="storeCity">Stadt</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeCity"
+                  name="storeCity"
+                  value="#{store.getCity()}€"
+          />
+          <h:outputLabel for="storeState">State</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeState"
+                  name="storeState"
+                  value="#{store.getState()}€"
+          />
+          <p style="#{deleteCheck ? '' : 'display: none'}">Store #{store.getStoreName()} wirklich Löschen?</p>
+          <p style="#{deleteCheck ? 'display: none' : ''}">Store #{store.getStoreName()} kann nicht gelöscht werden.</p>
+          <h:form styleClass="deleteForm">
+            <div class="crud_buttons">
+              <h:inputText id="storeIdMaster" value="#{storeController.storeId}"
+                           style="display: none"/>
+              <script type="application/javascript">
+                setValueById("deleteForm", "storeIdMaster", "#{store.getStoreId()}");
+              </script>
+              <h:commandButton style="#{deleteCheck ? '' : 'display: none'}"
+                               action="#{storeController.removeStore()}" value="Löschen"
+                               id="removeButton"/>
+              <h:commandButton style="#{deleteCheck ? 'display: none' : ''}"
+                               action="#{storeController.removeStore()}" value="Löschen"
+                               id="removeButtonDisabled" disabled="true"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

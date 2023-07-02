@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="brand_id" value="#{brand_id}"/>
+  <ui:param name="brand_name" value="#{brand_name}"/>
+  <!--@elvariable id="role" type="String"-->
+  <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+  <div class="card">
+    <h3>Marke</h3>
+    <c:choose>
+      <c:when test="${role != 'USER2'}">
+        <div class="info" onclick="openCrudView('brand_#{brand_id}')">
+          <h:outputLabel for="brandId1">Id</h:outputLabel>
+          <h:outputText prependId="false" type="text" id="brandId1" name="brandId"
+                        value="#{brand_id}"/>
+          <h:outputLabel for="brandName1">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="brandName1"
+                  name="brandName"
+                  value="#{brand_name}"
+          />
+        </div>
+        <div class="info_big" id="brand_#{brand_id}">
+          <div class="info_content">
+            <img src="../../resources/imgs/cross.png" alt="close icon"
+                 onclick="closeCrudView('brand_#{brand_id}')"/>
+            <h3>Marke</h3>
+            <h:outputLabel for="brandIdMaster">Id</h:outputLabel>
+            <h:outputText type="text" id="brandIdMaster" name="brandIdMaster" value="#{brand_id}"/>
+            <h:outputLabel for="brandNameMaster">Name</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="brandNameMaster"
+                    name="brandNameMaster"
+                    value="#{brand_name}"
+            />
+            <div class="info_options">
+              <button class="btn disable" disabled="disabled">Bearbeiten</button>
+              <button class="btn"
+                      onclick="window.location.href = 'Delete.xhtml?delete=#{brand_id}'">Löschen
+              </button>
+            </div>
+          </div>
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div class="info">
+          <h:outputLabel for="brandId2">Id</h:outputLabel>
+          <h:outputText prependId="false" type="text" id="brandId2" name="brandId"
+                        value="#{brand_id}"/>
+          <h:outputLabel for="brandName2">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="brandName2"
+                  name="brandName"
+                  value="#{brand_name}"
+          />
+        </div>
+      </c:otherwise>
+    </c:choose>
+  </div>
+</ui:composition>
+</body>
+</html>

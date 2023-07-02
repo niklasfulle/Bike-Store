@@ -1,0 +1,79 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="staff_id" value="#{staff_id}"/>
+  <ui:param name="firstname" value="#{firstname}"/>
+  <ui:param name="lastname" value="#{lastname}"/>
+  <ui:param name="email" value="#{email}"/>
+  <ui:param name="phone" value="#{phone}"/>
+  <ui:param name="manager_name" value="#{manager_name}"/>
+  <ui:param name="store_name" value="#{store_name}"/>
+  <ui:param name="active" value="#{active}"/>
+  <div class="#{active == 1 ? 'card active' : 'card inactive'}">
+    <h3>Mitarbeiter</h3>
+    <div class="info" onclick="openCrudView('staff_#{staff_id}')">
+      <h:outputLabel for="staff_name">Name</h:outputLabel>
+      <h:outputText
+              type="text"
+              id="staff_name"
+              name="staff_name"
+              value="#{firstname} #{lastname}"
+      />
+      <h:outputLabel for="email">E-Mail</h:outputLabel>
+      <h:outputText type="text" id="email" name="email" value="#{email}"/>
+      <h:outputLabel for="phone">Telefonnummer</h:outputLabel>
+      <h:outputText type="text" id="phone" name="phone" value="#{phone}"/>
+    </div>
+    <div class="info_big" id="staff_#{staff_id}">
+      <div class="info_content">
+        <img src="../../resources/imgs/cross.png" alt="close icon"
+             onclick="closeCrudView('staff_#{staff_id}')"/>
+        <h3>Mitarbeiter</h3>
+        <h:outputLabel for="firstname">Vorname</h:outputLabel>
+        <h:outputText
+                type="text"
+                id="firstname_view"
+                name="firstname"
+                value="#{firstname}"
+        />
+        <h:outputLabel for="lastname">Nachname</h:outputLabel>
+        <h:outputText
+                type="text"
+                id="lastname_view"
+                name="lastname"
+                value="#{lastname}"
+        />
+        <h:outputLabel for="email_view">E-Mail</h:outputLabel>
+        <h:outputText type="text" id="email_view" name="email" value="#{email}"/>
+        <h:outputLabel for="phone_view">Telefonnummer</h:outputLabel>
+        <h:outputText type="text" id="phone_view" name="phone" value="#{phone}"/>
+        <h:outputLabel for="store_name_view">Laden Name</h:outputLabel>
+        <h:outputText type="text" id="store_name_view" name="store_name" value="#{store_name}"/>
+        <h:outputLabel for="manager_name_view">Manager Name</h:outputLabel>
+        <h:outputText type="text" id="manager_name_view" name="manager_name"
+                      value="#{manager_name}"/>
+        <h:outputLabel for="active_view">Beschäftigung</h:outputLabel>
+        <h:outputText type="text" id="active_view" name="manager_name"
+                      value="#{active == 1 ? 'Aktiv' : 'Inaktiv'}"/>
+        <div class="info_options">
+          <button class="btn"
+                  onclick="window.location.href = 'Update.xhtml?update=#{staff_id}'">Bearbeiten
+          </button>
+          <button class="btn"
+                  onclick="window.location.href = 'Delete.xhtml?delete=#{staff_id}'">Löschen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ui:composition>
+</body>
+</html>

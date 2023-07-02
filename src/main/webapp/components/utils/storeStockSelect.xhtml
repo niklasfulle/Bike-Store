@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="xhtml"
+>
+<body>
+<ui:composition>
+  <h:outputLabel for="store1">Store</h:outputLabel>
+  <h:outputText
+          type="text"
+          id="store1"
+          name="store1"
+          value="#{storeController.getStore(1).getStoreName()}"
+  />
+  <h:inputText
+          type="text"
+          id="stockQuantityStore1"
+          name="stockQuantityStore1"
+          value="#{productController.stockQuantityStore1}"
+          p:placeholder="Anzahl (min 1)"
+  >
+    <f:validateLongRange minimum="0" validatorMessage="Der Wert muss größer als 0 sein."/>
+  </h:inputText>
+  <h:outputLabel for="store2">Store</h:outputLabel>
+  <h:outputText
+          type="text"
+          id="store2"
+          name="store2"
+          value="#{storeController.getStore(2).getStoreName()}"
+  />
+  <h:inputText
+          type="text"
+          id="stockQuantityStore2"
+          name="stockQuantityStore2"
+          value="#{productController.stockQuantityStore2}"
+          p:placeholder="Anzahl (min 1)"
+  >
+    <f:validateLongRange minimum="0" validatorMessage="Der Wert muss größer als 0 sein."/>
+  </h:inputText>
+  <h:outputLabel for="store3">Store</h:outputLabel>
+  <h:outputText
+          type="text"
+          id="store3"
+          name="store3"
+          value="#{storeController.getStore(3).getStoreName()}"
+  />
+  <h:inputText
+          type="text"
+          id="stockQuantityStore3"
+          name="stockQuantityStore3"
+          value="#{productController.stockQuantityStore3}"
+          p:placeholder="Anzahl (min 1)"
+  >
+    <f:validateLongRange minimum="0" validatorMessage="Der Wert muss größer als 0 sein."/>
+  </h:inputText>
+  <h:message class="errorMessage" for="stockQuantityStore1"/>
+  <h:message class="errorMessage" for="stockQuantityStore2"/>
+  <h:message class="errorMessage" for="stockQuantityStore3"/>
+</ui:composition>
+</body>
+</html>

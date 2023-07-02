@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="order"
+                value="#{orderController.getOrder(request.getParameter('update'))}"/>
+      <!--@elvariable id="updateCheck" type="Boolean"-->
+      <ui:param name="updateCheck" value="#{orderController.updateCheck(order.getOrderId())}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div wide">
+          <h3>Bestellung Aktualisieren</h3>
+          <h:form styleClass="updateForm">
+            <div class="order_content">
+              <div class="left">
+                <h:outputLabel for="customer_name_view">Kunde</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="customer_name_view"
+                        name="customer_name"
+                        value="#{order.getCustomer().getFirstName()} #{order.getCustomer().getLastName()}"
+                />
+                <h:outputLabel for="staff_name_view">Mitarbeiter</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="staff_name_view"
+                        name="staff_name"
+                        value="#{order.getStaff().getFirstName()} #{order.getStaff().getLastName()}"
+                />
+                <h:outputLabel for="store_name_view">Laden</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="store_name_view"
+                        name="store_name"
+                        value="#{order.getStore().getStoreName()}"
+                />
+                <div class="order_dates">
+                  <div>
+                    <h:outputLabel for="orderDate">Bestellt</h:outputLabel>
+                    <h:outputLabel for="requiredDate">Benötigt</h:outputLabel>
+                    <h:outputLabel for="shippedDate">Verschickt</h:outputLabel>
+                  </div>
+                  <div>
+                    <h:outputText
+                            type="text"
+                            id="orderDate"
+                            name="orderDate"
+                            value="#{order.getOrderDate()}"
+                    />
+                    <h:inputText type="text"
+                                 id="requiredDate"
+                                 name="requiredDate"
+                                 required="true"
+                                 requiredMessage="Requierd Date darf nicht leer sein"
+                                 p:placeholder="yyyy-mm-dd"
+                                 value="#{orderController.requiredDateUpdate}">
+                      <f:convertDateTime pattern="yyyy-mm-dd"/>
+                    </h:inputText>
+                    <script type="application/javascript">
+                      setValueById("updateForm", "requiredDate", "#{order.getRequiredDate()}");
+                    </script>
+                    <h:inputText type="text"
+                                 id="shippedDate"
+                                 name="shippedDate"
+                                 required="true"
+                                 requiredMessage="Order Date darf nicht leer sein"
+                                 p:placeholder="yyyy-mm-dd"
+                                 value="#{orderController.shippedDateUpdate}">
+                      <f:convertDateTime pattern="yyyy-mm-dd"/>
+                    </h:inputText>
+                    <script type="application/javascript">
+                      setValueById("updateForm", "shippedDate", "#{order.getShippedDate()}");
+                    </script>
+                  </div>
+                </div>
+                <h:message class="errorMessage" for="requiredDate"/>
+                <h:message class="errorMessage" for="shippedDate"/>
+                <h:outputLabel for="order_status">Status</h:outputLabel>
+                <h:selectOneMenu value="#{orderController.orderStatus}" id="order_status"
+                                 name="order_status">
+                  <f:selectItem itemValue="1" itemLabel="Ausstehend"/>
+                  <f:selectItem itemValue="2" itemLabel="wird bearbeitet"/>
+                  <f:selectItem itemValue="3" itemLabel="Abgelehnt"/>
+                  <f:selectItem itemValue="4" itemLabel="Vollendet"/>
+                </h:selectOneMenu>
+                <script type="application/javascript">
+                  setValueById("updateForm", "order_status", "#{order.getOrderStatus()}");
+                </script>
+              </div>
+              <div class="right">
+                <div class="order_items">
+                  <h:outputLabel>Produkte</h:outputLabel>
+                  <ui:repeat
+                          var="orderItem"
+                          value="#{orderItemController.getAllOrderItemsById(request.getParameter('update'))}"
+                  ><h:outputText
+                          type="text"
+                          id="product_Name"
+                          name="product_Name"
+                          value="#{orderItem.getProduct().getProductName()}"
+                  /><h:outputText
+                          type="text"
+                          id="product_ListPrice"
+                          name="product_ListPrice"
+                          value="Preis: #{orderController.getProductPriceWithDiscount(orderItem)}€"
+                  /><h:outputText
+                          data-gender="male"
+                          type="text"
+                          id="product_Quantity"
+                          name="product_Quantity"
+                          value="Anzahl: #{orderItem.getQuantity()}"
+                  /></ui:repeat>
+                </div>
+                <h:outputLabel for="total_price">Gesamt Preis</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="total_price"
+                        name="total_price"
+                        value="#{orderController.getTotalOrderPrice(request.getParameter('update'))}€"/>
+              </div>
+            </div>
+            <p style="#{deleteCheck ? 'display: none' : ''}">Bestellung kann nicht mehr bearbeitet werden.</p>
+            <div class="crud_buttons">
+              <h:inputText id="orderIdMaster" value="#{orderController.orderId}"
+                           style="display: none"/>
+              <script type="application/javascript">
+                setValueById("updateForm", "orderIdMaster", "#{request.getParameter('update')}");
+              </script>
+              <h:commandButton style="#{updateCheck ? '' : 'display: none'}"
+                               action="#{orderController.updateOrder()}" value="Speichern"
+                               id="saveButton"/>
+              <h:commandButton style="#{updateCheck ? 'display: none' : ''}"
+                               action="#{orderController.updateOrder()}" value="Speichern"
+                               id="saveButtonDisabled" disabled="true"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

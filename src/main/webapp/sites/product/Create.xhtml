@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div wide">
+          <h3>Produkt Speichern</h3>
+          <h:form>
+            <div class="product_content">
+              <div class="left">
+                <h:outputLabel for="productName">Name</h:outputLabel>
+                <h:inputText
+                        type="text"
+                        id="productName"
+                        name="productName"
+                        value="#{productController.productName}"
+                        required="true"
+                        requiredMessage="Name darf nicht leer sein"
+                />
+                <h:message class="errorMessage" for="productName"/>
+                <h:outputLabel for="productBrand">Marke</h:outputLabel>
+                <h:selectOneMenu value="#{productController.brandId}" id="productBrand"
+                                 name="productBrand">
+                  <f:selectItems value="#{brandController.getAllBrands()}" var="brand"
+                                 itemValue="#{brand.getBrandId()}"
+                                 itemLabel="#{brand.getBrandName()}"/>
+                </h:selectOneMenu>
+                <h:outputLabel for="productCategory">Kategorie</h:outputLabel>
+                <h:selectOneMenu value="#{productController.categoryId}" id="productCategory"
+                                 name="productCategory">
+                  <f:selectItems value="#{categoryController.getAllCategories()}" var="category"
+                                 itemValue="#{category.getCategoryId()}"
+                                 itemLabel="#{category.getCategoryName()}"/>
+                </h:selectOneMenu>
+                <h:outputLabel for="modelYear">Model Jahr</h:outputLabel>
+                <h:inputText
+                        type="text"
+                        id="modelYear"
+                        name="modelYear"
+                        value="#{productController.modelYear}"
+                        required="true"
+                        requiredMessage="Model Jahr darf nicht leer sein"
+                />
+                <h:message class="errorMessage" for="modelYear"/>
+                <h:outputLabel for="listPrice">Listen Preis</h:outputLabel>
+                <h:inputText
+                        type="text"
+                        id="listPrice"
+                        name="listPrice"
+                        value="#{productController.listPrice}"
+                        required="true"
+                        requiredMessage="Listen Preis darf nicht leer sein"
+                />
+                <h:message class="errorMessage" for="listPrice"/>
+              </div>
+              <div class="right">
+                <ui:insert name="storeStockSelect">
+                  <ui:include src="../../components/utils/storeStockSelect.xhtml"/>
+                </ui:insert>
+              </div>
+            </div>
+            <div class="crud_buttons">
+              <h:commandButton action="#{productController.saveProduct()}" value="Speichern"
+                               id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="store_id" value="#{store_id}"/>
+  <ui:param name="store_name" value="#{store_name}"/>
+  <ui:param name="email" value="#{email}"/>
+  <ui:param name="phone" value="#{phone}"/>
+  <ui:param name="street" value="#{street}"/>
+  <ui:param name="city" value="#{city}"/>
+  <ui:param name="zip_code" value="#{zip_code}"/>
+  <ui:param name="state" value="#{state}"/>
+  <!--@elvariable id="role" type="String"-->
+  <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+  <div class="card">
+    <h3>Laden</h3>
+    <c:choose>
+      <c:when test="${role != 'USER2'}">
+        <div class="info" onclick="openCrudView('store_#{store_id}')">
+          <h:outputLabel for="storeName1">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeName1"
+                  name="storeName"
+                  value="#{store_name}"
+          />
+          <h:outputLabel for="email1">E-Mail</h:outputLabel>
+          <h:outputText type="text" id="email1" name="email" value="#{email}"/>
+          <h:outputLabel for="phone1">Telefonnummer</h:outputLabel>
+          <h:outputText type="text" id="phone1" name="phone" value="#{phone}"/>
+        </div>
+        <div class="info_big" id="store_#{store_id}">
+          <div class="info_content">
+            <img src="../../resources/imgs/cross.png" alt="close icon"
+                 onclick="closeCrudView('store_#{store_id}')"/>
+            <h3>Laden</h3>
+            <h:outputLabel for="store_name_view">Name</h:outputLabel>
+            <h:outputText
+                    type="text"
+                    id="store_name_view"
+                    name="store_name"
+                    value="#{store_name}"
+            />
+            <h:outputLabel for="email_view">E-Mail</h:outputLabel>
+            <h:outputText type="text" id="email_view" name="email" value="#{email}"/>
+            <h:outputLabel for="phone_view">Telefonnummer</h:outputLabel>
+            <h:outputText type="text" id="phone_view" name="phone" value="#{phone}"/>
+            <h:outputLabel for="street_view">Straße</h:outputLabel>
+            <h:outputText type="text" id="street_view" name="street" value="#{street}"/>
+            <h:outputLabel for="zip_code_view">Postleitzahl</h:outputLabel>
+            <h:outputText type="text" id="zip_code_view" name="zip_code" value="#{zip_code}"/>
+            <h:outputLabel for="city_view">Stadt</h:outputLabel>
+            <h:outputText type="text" id="city_view" name="city" value="#{city}"/>
+            <h:outputLabel for="state_view">State</h:outputLabel>
+            <h:outputText type="text" id="state_view" name="state" value="#{state}"/>
+            <div class="info_options">
+              <button class="btn"
+                      onclick="window.location.href = 'Update.xhtml?update=#{store_id}'">Bearbeiten
+              </button>
+              <button class="btn"
+                      onclick="window.location.href = 'Delete.xhtml?delete=#{store_id}'">Löschen
+              </button>
+            </div>
+          </div>
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div class="info">
+          <h:outputLabel for="storeName2">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeName2"
+                  name="storeName"
+                  value="#{store_name}"
+          />
+          <h:outputLabel for="email2">E-Mail</h:outputLabel>
+          <h:outputText type="text" id="email2" name="email" value="#{email}"/>
+          <h:outputLabel for="phone2">Telefonnummer</h:outputLabel>
+          <h:outputText type="text" id="phone2" name="phone" value="#{phone}"/>
+        </div>
+      </c:otherwise>
+    </c:choose>
+  </div>
+</ui:composition>
+</body>
+</html>

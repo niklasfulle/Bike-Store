@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="customer"
+                value="#{customerController.getCustomer(request.getParameter('update'))}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Kunden Aktualisieren</h3>
+          <h:form styleClass="updateForm">
+            <h:inputText
+                    type="text"
+                    id="customerId"
+                    name="customerId"
+                    value="#{customerController.customerId}"
+                    style="display: none"
+            />
+            <script type="application/javascript">
+              setValueById("updateForm", "customerId", "#{customer.getCustomerId()}");
+            </script>
+            <h:outputLabel for="customerFirstname">Vorname</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerFirstname"
+                    name="customerFirstname"
+                    styleClass="customerFirstnameInput"
+                    value="#{customerController.firstName}"
+                    onkeyup="checkIfEmpty('customerFirstnameInput', 'Vorname')"
+            />
+            <h:message class="errorMessage" for="customerFirstname"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerFirstname", "#{customer.getFirstName()}");
+            </script>
+            <h:outputLabel for="customerLastname">Nachname</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerLastname"
+                    name="customerLastname"
+                    styleClass="customerLastnameInput"
+                    value="#{customerController.lastName}"
+                    onkeyup="checkIfEmpty('customerLastnameInput', 'Nachname')"
+            />
+            <h:message class="errorMessage" for="customerLastname"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerLastname", "#{customer.getLastName()}");
+            </script>
+            <h:outputLabel for="customerEmail">E-Mail</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerEmail"
+                    name="customerEmail"
+                    styleClass="customerEmailInput"
+                    value="#{customerController.email}"
+                    onkeyup="checkIfEmpty('customerEmailInput', 'E-Mail')"
+            />
+            <h:message class="errorMessage" for="customerEmail"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerEmail", "#{customer.getEmail()}");
+            </script>
+            <h:outputLabel for="customerPhone">Telefonnummer</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerPhone"
+                    name="customerPhone"
+                    styleClass="customerPhoneInput"
+                    value="#{customerController.phone}"
+                    onkeyup="checkIfEmpty('customerPhoneInput', 'Telefonnummer')"
+            />
+            <h:message class="errorMessage" for="customerPhone"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerPhone", "#{customer.getPhone()}");
+            </script>
+            <h:outputLabel for="customerStreet">Straße</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerStreet"
+                    name="customerStreet"
+                    styleClass="customerStreetInput"
+                    value="#{customerController.street}"
+                    onkeyup="checkIfEmpty('customerStreetInput', 'Straße')"
+            />
+            <h:message class="errorMessage" for="customerStreet"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerStreet", "#{customer.getStreet()}");
+            </script>
+            <h:outputLabel for="customerPostalCode">Postleitzahl</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerPostalCode"
+                    name="customerPostalCode"
+                    styleClass="customerPostalCodeInput"
+                    value="#{customerController.postalCode}"
+                    onkeyup="checkIfEmpty('customerPostalCodeInput', 'Postleitzahl')"
+            />
+            <h:message class="errorMessage" for="customerPostalCode"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerPostalCode", "#{customer.getPostalCode()}");
+            </script>
+            <h:outputLabel for="customerCity">Stadt</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerCity"
+                    name="customerCity"
+                    styleClass="customerCityInput"
+                    value="#{customerController.city}"
+                    onkeyup="checkIfEmpty('customerCityInput', 'Stadt')"
+            />
+            <h:message class="errorMessage" for="customerCity"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerCity", "#{customer.getCity()}");
+            </script>
+            <h:outputLabel for="customerState">State</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerState"
+                    name="customerState"
+                    styleClass="customerStateInput"
+                    value="#{customerController.state}"
+                    onkeyup="checkIfEmpty('customerStateInput', 'State')"
+            />
+            <h:message class="errorMessage" for="customerState"/>
+            <script type="application/javascript">
+              setValueById("updateForm", "customerState", "#{customer.getState()}");
+            </script>
+            <p class="errorMessage" style="display: none" id="errorMessageP"></p>
+            <div class="crud_buttons">
+              <h:commandButton action="#{customerController.updateCustomer()}" value="Speichern"
+                               styleClass="saveButtonForm" id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>

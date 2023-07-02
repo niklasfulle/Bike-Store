@@ -1,0 +1,187 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="order_id" value="#{order_id}"/>
+  <ui:param name="order_customer_firstname" value="#{order_customer_firstname}"/>
+  <ui:param name="order_customer_lastname" value="#{order_customer_lastname}"/>
+  <ui:param name="order_staff_firstname" value="#{order_staff_firstname}"/>
+  <ui:param name="order_staff_lastname" value="#{order_staff_lastname}"/>
+  <ui:param name="order_store_name" value="#{order_store_name}"/>
+  <ui:param name="order_order_date" value="#{order_order_date}"/>
+  <ui:param name="order_requierd_date" value="#{order_requierd_date}"/>
+  <ui:param name="order_shipped_date" value="#{order_shipped_date}"/>
+  <ui:param name="order_order_status" value="#{order_order_status}"/>
+  <!--@elvariable id="role" type="String"-->
+  <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+  <div class="#{orderController.getOrderStatusBorder(order_order_status)}">
+    <h3>Bestellung</h3>
+    <c:choose>
+      <c:when test="${role != 'USER2'}">
+        <div class="info" onclick="openCrudView('order_#{order_id}')">
+          <h:outputLabel for="customerName1">Kunde</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="customerName1"
+                  name="customerName"
+                  value="#{order_customer_firstname} #{order_customer_lastname}"
+          />
+          <h:outputLabel for="staffName1">Mitarbeiter</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffName1"
+                  name="staffName1"
+                  value="#{order_staff_firstname} #{order_staff_lastname}"
+          />
+          <h:outputLabel for="storeName1">Laden</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeName1"
+                  name="storeName1"
+                  value="#{order_store_name}"
+          />
+        </div>
+        <div class="info_big" id="order_#{order_id}">
+          <div class="info_content wide">
+            <img src="../../resources/imgs/cross.png" alt="close icon"
+                 onclick="closeCrudView('order_#{order_id}')"/>
+            <h3>Bestellung</h3>
+            <div class="order_content">
+              <div class="left">
+                <h:outputLabel for="customer_name_view">Kunde</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="customer_name_view"
+                        name="customer_name"
+                        value="#{order_customer_firstname} #{order_customer_lastname}"
+                />
+                <h:outputLabel for="staff_name_view">Mitarbeiter</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="staff_name_view"
+                        name="staff_name"
+                        value="#{order_staff_firstname} #{order_staff_lastname}"
+                />
+                <h:outputLabel for="store_name_view">Laden</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="store_name_view"
+                        name="store_name"
+                        value="#{order_store_name}"
+                />
+                <div class="order_dates">
+                  <div>
+                    <h:outputLabel for="order_date">Bestellt</h:outputLabel>
+                    <h:outputLabel for="requierd_date">Benötigt</h:outputLabel>
+                    <h:outputLabel for="shipped_date">Verschickt</h:outputLabel>
+                  </div>
+                  <div>
+                    <h:outputText
+                            type="text"
+                            id="order_date"
+                            name="order_date"
+                            value="#{order_order_date}"
+                    />
+                    <h:outputText
+                            type="text"
+                            id="requierd_date"
+                            name="requierd_date"
+                            value="#{order_requierd_date}"
+                    />
+                    <h:outputText
+                            type="text"
+                            id="shipped_date"
+                            name="shipped_date"
+                            value="#{order_shipped_date}"
+                    />
+                  </div>
+                </div>
+                <h:outputLabel for="orderStatus">Status</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="orderStatus"
+                        name="orderStatus"
+                        value="#{orderController.getOrderStatusString(order_order_status)}"
+                />
+              </div>
+              <div class="right">
+                <div class="order_items">
+                  <h:outputLabel>Produkte</h:outputLabel>
+                  <ui:repeat
+                          var="orderItem"
+                          value="#{orderItemController.getAllOrderItemsById(order_id)}"
+                  ><h:outputText
+                          type="text"
+                          id="product_Name"
+                          name="product_Name"
+                          value="#{orderItem.getProduct().getProductName()}"
+                  /><h:outputText
+                          type="text"
+                          id="product_ListPrice"
+                          name="product_ListPrice"
+                          value="Preis: #{orderController.getProductPriceWithDiscount(orderItem)}€"
+                  /><h:outputText
+                          data-gender="male"
+                          type="text"
+                          id="product_Quantity"
+                          name="product_Quantity"
+                          value="Anzahl: #{orderItem.getQuantity()}"
+                  /></ui:repeat>
+                </div>
+                <h:outputLabel for="total_price">Gesamt Preis</h:outputLabel>
+                <h:outputText
+                        type="text"
+                        id="total_price"
+                        name="total_price"
+                        value="#{orderController.getTotalOrderPrice(order_id)}€"/>
+              </div>
+            </div>
+            <div class="info_options">
+              <button id="editButton" class="btn"
+                      onclick="window.location.href = 'Update.xhtml?update=#{order_id}'">Bearbeiten
+              </button>
+              <button id="deleteButton" class="btn"
+                      onclick="window.location.href = 'Delete.xhtml?delete=#{order_id}'">Löschen
+              </button>
+            </div>
+          </div>
+        </div>
+      </c:when>
+      <c:otherwise>
+        <div class="info">
+          <h:outputLabel for="customerName2">Kunde</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="customerName2"
+                  name="customerName"
+                  value="#{order_customer_firstname} #{order_customer_lastname}"
+          />
+          <h:outputLabel for="staffName2">Mitarbeiter</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="staffName2"
+                  name="staffName"
+                  value="#{order_staff_firstname} #{order_staff_lastname}"
+          />
+          <h:outputLabel for="storeName2">Laden</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="storeName2"
+                  name="storeName"
+                  value="#{order_store_name}"
+          />
+        </div>
+      </c:otherwise>
+    </c:choose>
+  </div>
+</ui:composition>
+</body>
+</html>

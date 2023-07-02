@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Kunden Speichern</h3>
+          <h:form prependId="false">
+            <h:outputLabel for="customerFirstname">Vorname</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerFirstname"
+                    name="customerFirstname"
+                    value="#{customerController.firstName}"
+                    required="true"
+                    requiredMessage="Vorname darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerFirstname"/>
+            <h:outputLabel for="customerLastname">Nachname</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerLastname"
+                    name="customerLastname"
+                    value="#{customerController.lastName}"
+                    required="true"
+                    requiredMessage="Nachname darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerLastname"/>
+            <h:outputLabel for="customerEmail">E-Mail</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerEmail"
+                    name="customerEmail"
+                    value="#{customerController.email}"
+                    required="true"
+                    requiredMessage="E-Mail darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerEmail"/>
+            <h:outputLabel for="customerPhone">Telefonnummer</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerPhone"
+                    name="customerPhone"
+                    value="#{customerController.phone}"
+                    required="true"
+                    requiredMessage="Telefonnummer darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerPhone"/>
+            <h:outputLabel for="customerStreet">Straße</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerStreet"
+                    name="customerStreet"
+                    value="#{customerController.street}"
+                    required="true"
+                    requiredMessage="Straße darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerStreet"/>
+            <h:outputLabel for="customerPostalCode">Postleitzahl</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerPostalCode"
+                    name="customerPostalCode"
+                    value="#{customerController.postalCode}"
+                    required="true"
+                    requiredMessage="Postleitzahl darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerPostalCode"/>
+            <h:outputLabel for="customerCity">Stadt</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerCity"
+                    name="customerCity"
+                    value="#{customerController.city}"
+                    required="true"
+                    requiredMessage="Stadt darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerCity"/>
+            <h:outputLabel for="customerState">State</h:outputLabel>
+            <h:inputText
+                    type="text"
+                    id="customerState"
+                    name="customerState"
+                    value="#{customerController.state}"
+                    required="true"
+                    requiredMessage="State darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="customerState"/>
+            <div class="crud_buttons">
+              <h:commandButton action="#{customerController.saveCustomer()}" value="Speichern"
+                               id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"></ui:define>
+  </ui:composition>
+</h:body>
+</html>
