@@ -1,0 +1,126 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="page" value="#{request.getServletPath()}"/>
+  <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+  <div class="selectSearch">
+    <h:inputText type="text" id="searchInput" p:placeholder="Suche..."/>
+    <button onclick="selectSearch()" id="searchButton">
+      <img alt="search Icon" src="../../resources/imgs/search.png"/>
+    </button>
+    <script type="application/javascript">
+      document.getElementById('searchInput').addEventListener('keyup', function (event) {
+        if (event.key === 'Enter') {
+          document.getElementById("searchButton").click();
+        }
+      });
+    </script>
+  </div>
+  <div class="selectSorting">
+    <div class="tooltip">Sortierung:
+      <span class="tooltiptext">Das Attribut nach dem die Elemente sortiert werden sollen.</span>
+    </div>
+    <c:if test="${page == '/sites/brand/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(1)" id="objectSortierung1" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="name" itemLabel="Name"/>
+      </h:selectOneMenu>
+    </c:if>
+    <c:if test="${page == '/sites/category/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(2)" id="objectSortierung2" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="name" itemLabel="Name"/>
+      </h:selectOneMenu>
+    </c:if>
+    <c:if test="${page == '/sites/customer/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(3)" id="objectSortierung3" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="firstName" itemLabel="Vorname"/>
+        <f:selectItem itemValue="lastName" itemLabel="Nachname"/>
+        <f:selectItem itemValue="email" itemLabel="E-Mail"/>
+        <f:selectItem itemValue="phone" itemLabel="Telefonnummer"/>
+        <f:selectItem itemValue="street" itemLabel="Straße"/>
+        <f:selectItem itemValue="postalCode" itemLabel="Postleitzahl"/>
+        <f:selectItem itemValue="city" itemLabel="Stadt"/>
+        <f:selectItem itemValue="state" itemLabel="State"/>
+      </h:selectOneMenu>
+    </c:if>
+    <c:if test="${page == '/sites/order/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(4)" id="objectSortierung4" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="customer" itemLabel="Kunde"/>
+        <f:selectItem itemValue="staff" itemLabel="Mitarbeiter"/>
+        <f:selectItem itemValue="store" itemLabel="Laden"/>
+        <f:selectItem itemValue="status" itemLabel="Status"/>
+      </h:selectOneMenu>
+    </c:if>
+    <c:if test="${page == '/sites/product/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(5)" id="objectSortierung5" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="name" itemLabel="Name"/>
+        <f:selectItem itemValue="brand" itemLabel="Marke"/>
+        <f:selectItem itemValue="category" itemLabel="Kategorie"/>
+        <f:selectItem itemValue="modelYearNew" itemLabel="Model Jahr (new)"/>
+        <f:selectItem itemValue="modelYearOld" itemLabel="Model Jahr (alt)"/>
+        <f:selectItem itemValue="priceMin" itemLabel="Preis (min)"/>
+        <f:selectItem itemValue="priceMax" itemLabel="Preis (max)"/>
+      </h:selectOneMenu>
+    </c:if>
+    <c:if test="${page == '/sites/staff/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(6)" id="objectSortierung6" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="firstName" itemLabel="Vorname"/>
+        <f:selectItem itemValue="lastName" itemLabel="Nachname"/>
+        <f:selectItem itemValue="email" itemLabel="E-Mail"/>
+        <f:selectItem itemValue="phone" itemLabel="Telefonnummer"/>
+        <f:selectItem itemValue="manager" itemLabel="Manager"/>
+        <f:selectItem itemValue="store" itemLabel="Laden"/>
+      </h:selectOneMenu>
+    </c:if>
+    <c:if test="${page == '/sites/stocks/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(7)" id="objectSortierung7" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="product" itemLabel="Produkt"/>
+        <f:selectItem itemValue="store" itemLabel="Laden"/>
+      </h:selectOneMenu>
+    </c:if>
+    <c:if test="${page == '/sites/store/View.xhtml'}">
+      <h:selectOneMenu onchange="setOrder(8)" id="objectSortierung8" name="objectSortierung">
+        <f:selectItem itemValue="" itemLabel="Auswählen"/>
+        <f:selectItem itemValue="name" itemLabel="Name"/>
+        <f:selectItem itemValue="email" itemLabel="E-Mail"/>
+        <f:selectItem itemValue="phone" itemLabel="Telefonnummer"/>
+        <f:selectItem itemValue="street" itemLabel="Straße"/>
+        <f:selectItem itemValue="postalCode" itemLabel="Postleitzahl"/>
+        <f:selectItem itemValue="city" itemLabel="Stadt"/>
+        <f:selectItem itemValue="state" itemLabel="State"/>
+      </h:selectOneMenu>
+    </c:if>
+  </div>
+  <div class="selectLimit">
+    <div class="tooltip">Limit:
+      <span class="tooltiptext">Anzahl der Elemente pro Seite.</span>
+    </div>
+    <h:selectOneMenu onchange="setLimit()" id="objectLimit" name="objectLimit">
+      <f:selectItem itemValue="24" itemLabel="24"/>
+      <f:selectItem itemValue="48" itemLabel="48"/>
+      <f:selectItem itemValue="72" itemLabel="72"/>
+      <f:selectItem itemValue="96" itemLabel="96"/>
+    </h:selectOneMenu>
+  </div>
+  <c:if test="${role != 'USER2'}">
+    <a class="btn" name="addBtn" href="Create.xhtml">Hinzufügen</a>
+  </c:if>
+</ui:composition>
+</body>
+</html>

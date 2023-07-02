@@ -1,0 +1,83 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="xhtml"
+>
+<body>
+<ui:composition>
+  <ui:param name="page" value="#{request.getServletPath()}"/>
+  <!--@elvariable id="role" type="String"-->
+  <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+  <div class="nav">
+    <ul>
+      <li>
+        <a href="#{page == '/index.xhtml' ? 'index.xhtml' : '../../index.xhtml'}">Home</a>
+      </li>
+      <c:if test="#{role != loginController.getLoginStatus()}">
+        <c:if test="#{role == 'ADMIN'}">
+          <li class="#{page == '/sites/staff/View.xhtml' ? 'active btn' : 'btn'}">
+            <a href="#{page == '/index.xhtml' ? 'sites/staff/View.xhtml' : '../staff/View.xhtml'}"
+               id="staff-btn">Mitarbeiter</a>
+          </li>
+        </c:if>
+      </c:if>
+      <li class="#{page == '/sites/store/View.xhtml' ? 'active btn' : 'btn'}">
+        <a href="#{page == '/index.xhtml' ? 'sites/store/View.xhtml' : '../store/View.xhtml'}">Laden</a>
+      </li>
+      <li class="#{page == '/sites/customer/View.xhtml' ? 'active btn' : 'btn'}">
+        <a href="#{page == '/index.xhtml' ? 'sites/customer/View.xhtml' : '../customer/View.xhtml'}"
+           id="customer-btn">Kunden</a>
+      </li>
+      <li class="#{page == '/sites/product/View.xhtml' ? 'active btn' : 'btn'}">
+        <a href="#{page == '/index.xhtml' ? 'sites/product/View.xhtml' : '../product/View.xhtml'}">Produkte</a>
+      </li>
+      <li class="#{page == '/sites/stocks/View.xhtml' ? 'active btn' : 'btn'}">
+        <a href="#{page == '/index.xhtml' ? 'sites/stocks/View.xhtml' : '../stocks/View.xhtml'}">Lager</a>
+      </li>
+      <li class="#{page == '/sites/brand/View.xhtml' ? 'active btn' : 'btn'}">
+        <a href="#{page == '/index.xhtml' ? 'sites/brand/View.xhtml' : '../brand/View.xhtml'}">Marken</a>
+      </li>
+      <li class="#{page == '/sites/category/View.xhtml' ? 'active btn' : 'btn'}">
+        <a href="#{page == '/index.xhtml' ? 'sites/category/View.xhtml' : '../category/View.xhtml'}">Kategorien</a>
+      </li>
+      <li class="#{page == '/sites/order/View.xhtml' ? 'active btn' : 'btn'}">
+        <a href="#{page == '/index.xhtml' ? 'sites/order/View.xhtml' : '../order/View.xhtml'}">Bestellungen</a>
+      </li>
+    </ul>
+    <div id="hamburger" onclick="toggleNav()">
+      <span class="lines" />
+      <span class="lines" />
+      <span class="lines" />
+    </div>
+  </div>
+  <div id="nav-links" class="hidden-links">
+    <a href="#{page == '/index.xhtml' ? 'index.xhtml' : '../../index.xhtml'}">Home</a>
+    <div>
+      <c:if test="#{role != loginController.getLoginStatus()}">
+        <c:if test="#{role == 'ADMIN'}">
+          <a class="#{page == '/sites/staff/View.xhtml' ? 'active btn' : 'btn'}"
+             href="#{page == '/index.xhtml' ? 'sites/staff/View.xhtml' : '../staff/View.xhtml'}">Mitarbeiter</a>
+        </c:if>
+      </c:if>
+      <a class="#{page == '/sites/store/View.xhtml' ? 'active btn' : 'btn'}"
+         href="#{page == '/index.xhtml' ? 'sites/store/View.xhtml' : '../store/View.xhtml'}">Laden</a>
+      <a class="#{page == '/sites/customer/View.xhtml' ? 'active btn' : 'btn'}"
+         href="#{page == '/index.xhtml' ? 'sites/customer/View.xhtml' : '../customer/View.xhtml'}">Kunden</a>
+      <a class="#{page == '/sites/product/View.xhtml' ? 'active btn' : 'btn'}"
+         href="#{page == '/index.xhtml' ? 'sites/product/View.xhtml' : '../product/View.xhtml'}">Produkte</a>
+      <a class="#{page == '/sites/stocks/View.xhtml' ? 'active btn' : 'btn'}"
+         href="#{page == '/index.xhtml' ? 'sites/stocks/View.xhtml' : '../stocks/View.xhtml'}">Lager</a>
+      <a class="#{page == '/sites/brand/View.xhtml' ? 'active btn' : 'btn'}"
+         href="#{page == '/index.xhtml' ? 'sites/brand/View.xhtml' : '../brand/View.xhtml'}">Marken</a>
+      <a class="#{page == '/sites/category/View.xhtml' ? 'active btn' : 'btn'}"
+         href="#{page == '/index.xhtml' ? 'sites/category/View.xhtml' : '../category/View.xhtml'}">Kategorien</a>
+      <a class="#{page == '/sites/order/View.xhtml' ? 'active btn' : 'btn'}"
+         href="#{page == '/index.xhtml' ? 'sites/order/View.xhtml' : '../order/View.xhtml'}">Bestellungen</a>
+    </div>
+  </div>
+</ui:composition>
+</body>
+</html>

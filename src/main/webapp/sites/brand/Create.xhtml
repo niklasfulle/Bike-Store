@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Marke Speichern</h3>
+          <h:form>
+            <h:outputLabel for="brandName">Name</h:outputLabel>
+            <h:inputText
+                    id="brandName"
+                    name="brandName"
+                    value="#{brandController.brandName}"
+                    required="true"
+                    requiredMessage="Name darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="brandName"/>
+            <div class="crud_buttons">
+              <h:commandButton
+                      action="#{brandController.saveBrand()}"
+                      name="brandNameSave"
+                      value="Speichern"
+                      id="saveButton"
+              />
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"/>
+  </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="auth"></ui:define>
+    <ui:define name="content">
+      <div class="frame">
+        <div class="login_div">
+          <h3>Anmelden</h3>
+          <h:form prependId="false">
+            <h:outputLabel for="loginEmail">E-Mail</h:outputLabel>
+            <h:inputText
+                    id="loginEmail"
+                    value="#{loginController.email}"
+                    required="true"
+                    requiredMessage="E-Mail darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="loginEmail"/>
+            <h:outputLabel for="loginPasswort">Passwort</h:outputLabel>
+            <h:inputSecret
+                    id="loginPasswort"
+                    value="#{loginController.phone}"
+                    required="true"
+                    requiredMessage="Passwort darf nicht leer sein"
+            />
+            <h:message class="errorMessage" for="loginPasswort"/>
+            <div class="login_buttons">
+              <h:commandButton
+                      value="Anmelden"
+                      id="loginButton"
+                      action="#{loginController.login}"
+              />
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"/>
+  </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <ui:param name="category"
+                value="#{categoryController.getCategory(request.getParameter('delete'))}"/>
+      <!--@elvariable id="deleteCheck" type="Boolean"-->
+      <ui:param name="deleteCheck"
+                value="#{categoryController.removeCheck(category.getCategoryId())}"/>
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Kategorie Löschen</h3>
+          <h:outputLabel for="categoryId">Id</h:outputLabel>
+          <h:outputText type="text" id="categoryId" name="categoryId"
+                        value="#{category.getCategoryId()}"/>
+          <h:outputLabel for="categoryName">Name</h:outputLabel>
+          <h:outputText
+                  type="text"
+                  id="categoryName"
+                  name="categoryName"
+                  value="#{category.getCategoryName()}"
+          />
+          <p style="#{deleteCheck ? '' : 'display: none'}">Kategorie #{category.getCategoryName()} wirklich Löschen?</p>
+          <p style="#{deleteCheck ? 'display: none' : ''}">Kategorie #{category.getCategoryName()} kann nicht gelöscht werden.</p>
+          <h:form styleClass="deleteForm">
+            <div class="crud_buttons">
+              <h:inputText id="categoryIdMaster" value="#{categoryController.categoryId}"
+                           style="display: none"/>
+              <script type="application/javascript">
+                setValueById("deleteForm", "categoryIdMaster", "#{category.getCategoryId()}");
+              </script>
+              <h:commandButton style="#{deleteCheck ? '' : 'display: none'}"
+                               action="#{categoryController.removeCategory()}" value="Löschen"
+                               id="removeButton"/>
+              <h:commandButton style="#{deleteCheck ? 'display: none' : ''}"
+                               action="#{categoryController.removeCategory()}" value="Löschen"
+                               id="removeButtonDisabled" disabled="true"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"/>
+  </ui:composition>
+</h:body>
+</html>

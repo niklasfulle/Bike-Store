@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:param name="role" value="#{loginController.getStaffRole()}"/>
+    <ui:define name="content">
+      <div class="optionsSmall">
+        <img alt="arrow down" src="../../resources/imgs/arrow.png" onclick="revealOptionsHidden()"
+             id="optionsImg"/>
+      </div>
+      <div class="options" id="options">
+        <ui:insert name="optionsInput">
+          <ui:include src="../../components/optionsInput.xhtml">
+          </ui:include>
+        </ui:insert>
+      </div>
+      <div class="frame">
+        <div class="cards">
+          <ui:repeat
+                  var="category"
+                  value="#{categoryController.getAllCategoriesParameter(request.getParameter('page'), request.getParameter('limit'), request.getParameter('order'), request.getParameter('search'))}"
+          >
+            <ui:insert name="card">
+              <ui:include src="../../components/cards/CategoryCard.xhtml">
+                <ui:param name="category_id" value="#{category.getCategoryId()}"/>
+                <ui:param
+                        name="category_name"
+                        value="#{category.getCategoryName()}"
+                />
+              </ui:include>
+            </ui:insert>
+          </ui:repeat>
+        </div>
+        <ui:insert name="data_paging">
+          <ui:include src="../../components/utils/dataPagingButtons.xhtml">
+            <ui:param name="link"
+                      value="#{dataPagingController.linkString(request.getParameter('limit'), request.getParameter('order'), request.getParameter('search'))}"/>
+          </ui:include>
+        </ui:insert>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

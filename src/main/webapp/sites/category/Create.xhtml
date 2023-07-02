@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="xhtml"
+>
+<h:body>
+  <ui:composition template="../../templates/commonLayout.xhtml">
+    <ui:define name="content">
+      <div class="optionsCrud">
+        <a class="btn" href="View.xhtml">Zurück</a>
+      </div>
+      <div class="frame">
+        <div class="crud_div">
+          <h3>Kategorie Speichern</h3>
+          <h:form>
+            <h:outputLabel for="categoryName">Name</h:outputLabel>
+            <h:inputText id="categoryName" value="#{categoryController.categoryName}"
+                         required="true"
+                         requiredMessage="Name darf nicht leer sein"/>
+            <h:message class="errorMessage" for="categoryName"/>
+            <div class="crud_buttons">
+              <h:commandButton action="#{categoryController.saveCategory()}" value="Speichern"
+                               id="saveButton"/>
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="topdownButtons"/>
+  </ui:composition>
+</h:body>
+</html>
