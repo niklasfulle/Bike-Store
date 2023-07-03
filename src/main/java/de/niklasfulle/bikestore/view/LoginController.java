@@ -80,8 +80,8 @@ public class LoginController {
    * @return the index page
    */
   public String logout() {
-    FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-    return "View.xhtml?faces-redirect=true";
+    getHttpSession().invalidate();
+    return "/index.xhtml?faces-redirect=true";
   }
 
   /**

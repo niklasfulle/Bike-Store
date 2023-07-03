@@ -17,7 +17,7 @@
   <div class="card">
     <h3>Marke</h3>
     <c:choose>
-      <c:when test="${role != 'USER2'}">
+      <c:when test="${role == 'ADMIN' || role == 'USER1'}">
         <div class="info" onclick="openCrudView('brand_#{brand_id}')">
           <h:outputLabel for="brandId1">Id</h:outputLabel>
           <h:outputText prependId="false" type="text" id="brandId1" name="brandId"

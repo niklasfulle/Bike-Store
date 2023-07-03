@@ -17,7 +17,7 @@
   <div class="card">
     <h3>Kategorie</h3>
     <c:choose>
-      <c:when test="${role != 'USER2'}">
+      <c:when test="${role == 'ADMIN' || role == 'USER1'}">
         <div class="info" onclick="openCrudView('category_#{category_id}')">
           <h:outputLabel for="categoryId1">Id</h:outputLabel>
           <h:outputText

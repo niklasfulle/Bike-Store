@@ -16,20 +16,18 @@
       <li>
         <a href="#{page == '/index.xhtml' ? 'index.xhtml' : '../../index.xhtml'}">Home</a>
       </li>
-      <c:if test="#{role != loginController.getLoginStatus()}">
+      <c:if test="#{role == 'ADMIN' || role == 'USER1' || role == 'USER2'}">
         <c:if test="#{role == 'ADMIN'}">
           <li class="#{page == '/sites/staff/View.xhtml' ? 'active btn' : 'btn'}">
             <a href="#{page == '/index.xhtml' ? 'sites/staff/View.xhtml' : '../staff/View.xhtml'}"
                id="staff-btn">Mitarbeiter</a>
           </li>
         </c:if>
-      </c:if>
       <li class="#{page == '/sites/store/View.xhtml' ? 'active btn' : 'btn'}">
         <a href="#{page == '/index.xhtml' ? 'sites/store/View.xhtml' : '../store/View.xhtml'}">Laden</a>
       </li>
       <li class="#{page == '/sites/customer/View.xhtml' ? 'active btn' : 'btn'}">
-        <a href="#{page == '/index.xhtml' ? 'sites/customer/View.xhtml' : '../customer/View.xhtml'}"
-           id="customer-btn">Kunden</a>
+        <a href="#{page == '/index.xhtml' ? 'sites/customer/View.xhtml' : '../customer/View.xhtml'}">Kunden</a>
       </li>
       <li class="#{page == '/sites/product/View.xhtml' ? 'active btn' : 'btn'}">
         <a href="#{page == '/index.xhtml' ? 'sites/product/View.xhtml' : '../product/View.xhtml'}">Produkte</a>
@@ -46,6 +44,7 @@
       <li class="#{page == '/sites/order/View.xhtml' ? 'active btn' : 'btn'}">
         <a href="#{page == '/index.xhtml' ? 'sites/order/View.xhtml' : '../order/View.xhtml'}">Bestellungen</a>
       </li>
+      </c:if>
     </ul>
     <div id="hamburger" onclick="toggleNav()">
       <span class="lines"/>

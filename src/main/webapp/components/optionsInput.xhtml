@@ -118,7 +118,7 @@
       <f:selectItem itemValue="96" itemLabel="96"/>
     </h:selectOneMenu>
   </div>
-  <c:if test="${role != 'USER2'}">
+  <c:if test="${role == 'ADMIN' || role == 'USER1'}">
     <a class="btn" name="addBtn" href="Create.xhtml">Hinzufügen</a>
   </c:if>
 </ui:composition>

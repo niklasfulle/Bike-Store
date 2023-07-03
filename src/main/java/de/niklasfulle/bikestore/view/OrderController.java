@@ -33,7 +33,7 @@ import de.niklasfulle.bikestore.business.orderItem.OrderItemService;
 @RequestScoped
 public class OrderController {
 
-  private final String readirectString = "/sites/category/View.xhtml?faces-redirect=true";
+  private final String readirectString = "/sites/order/View.xhtml?faces-redirect=true";
 
   // Services
   @Inject

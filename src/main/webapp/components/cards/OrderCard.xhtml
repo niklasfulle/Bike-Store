@@ -25,7 +25,7 @@
   <div class="#{orderController.getOrderStatusBorder(order_order_status)}">
     <h3>Bestellung</h3>
     <c:choose>
-      <c:when test="${role != 'USER2'}">
+      <c:when test="${role == 'ADMIN' || role == 'USER1'}">
         <div class="info" onclick="openCrudView('order_#{order_id}')">
           <h:outputLabel for="customerName1">Kunde</h:outputLabel>
           <h:outputText
