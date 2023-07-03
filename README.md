@@ -6,6 +6,7 @@
 -   [External dependencies](#external-dependencies)
 -   [Build](#build)
 -   [Login](#login)
+-   [Tests](#tests)
 -   [Features](#features)
 -   [Screenshots](#screenshots)
 
@@ -48,7 +49,7 @@ Type `connect` to connect to the server and paste the commands above. Now your w
 To build this project, clone this repository and execute:
 
 ```
-mvn clean package
+mvn clean package -DskipTests
 ```
 
 The JBDC Driver has to be into `standalone/deployments` in your wildfly installation.
@@ -65,6 +66,96 @@ These are the credentials for the admin account:
 | -------------------------- | -------- |
 | fabiola.jackson@bikes.shop | 555-5554 |
 
+## Tests
+
+To run the tests, you have to install the external dependencies and configure the wildfly server as described above. The wildfly server has to be running with a bike-store.war file deployed. In complete the tests are running for 6 minutes.<br>
+
+To run the tests, execute:
+```
+mvn clean package
+```
+
+There are a total of 102 tests, divided into:
+- 14 in BrandTest.java
+- 14 in CategoryTest.java
+- 16 in CustomerTest.java
+- 14 in OrderTest.java
+- 16 in ProductTest.java
+- 9 in StaffTest.java
+- 16 in StoreTest.java
+- 3 in UserTest.java
+
 ## Features
 
+-   User Authentication
+-   CRUD operations for all entities
+-   Pagination for all pages
+-   Search for Entities
+-   Sorting for Entities
+-   Responsive and mobile friendly design
+-   Tests for all CRUD operations
+
 ## Screenshots
+
+### Login
+
+<div id="image-table">
+    <table>
+	    <tr>
+    	    <td style="padding:10px">
+        	    <img src="docs/screenshots/login.png" width="1000"/>
+      	    </td>
+            <td style="padding:10px">
+            	<img src="docs/screenshots/home.png" width="1000"/>
+            </td>
+        </tr>
+        <tr>
+    	    <td style="padding:10px">
+        	    <img src="docs/screenshots/staff.png" width="1000"/>
+      	    </td>
+            <td style="padding:10px">
+            	<img src="docs/screenshots/store.png" width="1000"/>
+            </td>
+        </tr>
+        <tr>
+    	    <td style="padding:10px">
+        	    <img src="docs/screenshots/customer.png" width="1000"/>
+      	    </td>
+            <td style="padding:10px">
+            	<img src="docs/screenshots/product.png" width="1000"/>
+            </td>
+        </tr>
+        <tr>
+    	    <td style="padding:10px">
+        	    <img src="docs/screenshots/stocks.png" width="1000"/>
+      	    </td>
+            <td style="padding:10px">
+            	<img src="docs/screenshots/brand.png" width="1000"/>
+            </td>
+        </tr>
+        <tr>
+    	    <td style="padding:10px">
+        	    <img src="docs/screenshots/category.png" width="1000"/>
+      	    </td>
+            <td style="padding:10px">
+            	<img src="docs/screenshots/order.png" width="1000"/>
+            </td>
+        </tr>
+        <tr>
+    	    <td style="padding:10px">
+        	    <img src="docs/screenshots/customer-info.png" width="1000"/>
+      	    </td>
+            <td style="padding:10px">
+            	<img src="docs/screenshots/customer-create.png" width="1000"/>
+            </td>
+        </tr>
+        <tr>
+    	    <td style="padding:10px">
+        	    <img src="docs/screenshots/customer-update.png" width="1000"/>
+      	    </td>
+            <td style="padding:10px">
+            	<img src="docs/screenshots/customer-delete.png" width="1000"/>
+            </td>
+        </tr>
+    </table>
+</div>
